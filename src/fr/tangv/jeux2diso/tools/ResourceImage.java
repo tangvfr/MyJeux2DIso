@@ -18,8 +18,13 @@ public enum ResourceImage {
 	menubutton("gui/buttonmenu.png");
 	
 	private Image image;
+	private String ref;
 	
 	private ResourceImage(String ref) {
+		this.ref = ref;
+	}
+	
+	public void ini() {
 		try {
 			if (ref.equalsIgnoreCase("air")) {
 				image = new Image(0, 0);
@@ -28,6 +33,11 @@ public enum ResourceImage {
 			}
 		} catch (SlickException e) {
 			Main.error(e.getMessage());
+		}
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 	
