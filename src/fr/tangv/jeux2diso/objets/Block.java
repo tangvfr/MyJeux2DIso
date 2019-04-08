@@ -5,22 +5,19 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.tools.EtatBlock;
+import fr.tangv.jeux2diso.tools.Location;
 import fr.tangv.jeux2diso.tools.Material;
 
 public class Block {
 
-	private int x;
-	private int y;
-	private int z;
-	private Map map;
+	private World world;
 	private Material material;
 	private EtatBlock etat;
+	private Location location;
 	
-	public Block(int x, int y, int z, Map map, Material material, EtatBlock etat) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
-		this.map = map;
+	public Block(Location location, World world, Material material, EtatBlock etat) {
+		this.location = location;
+		this.world = world;
 		this.material = material;
 		this.etat = etat;
 	}
@@ -48,8 +45,12 @@ public class Block {
 		return material;
 	}
 	
+	public Location getLocation() {
+		return location;
+	}
+	
 	public int getX() {
-		return x;
+		return location.get;
 	}
 	
 	public int getY() {
@@ -60,8 +61,8 @@ public class Block {
 		return z;
 	}
 	
-	public Map getMap() {
-		return map;
+	public World getWorld() {
+		return world;
 	}
 	
 }

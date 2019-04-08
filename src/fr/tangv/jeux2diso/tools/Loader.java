@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Loader {
 
-	private boolean start;
+	private boolean start = false;
 	private int number;
 	private int numbercursor;
 	ArrayList<Runnable> listrunnable = new ArrayList<Runnable>();
@@ -54,16 +54,25 @@ public class Loader {
 		return start;
 	}
 	
+	public int getMax() {
+		return number;
+	}
+	
+	public int getCursor() {
+		return numbercursor;
+	}
+	
 	public boolean next() {
-		if (start) {
+		if (!start) {
 			return false;
 		} else {
-			if(numbercursor < listloading.size() ) {
+			if(numbercursor < listloading.size()) {
 				listloading.get(numbercursor).ini();
 				numbercursor++;
 				return true;
-			} if(numbercursor < number) {
-				listloading.get(numbercursor).ini();
+			}else if(numbercursor < number) {
+				listrunnable.get(numbercursor-listloading.size()).run();
+				numbercursor++;
 				return true;
 			} else {
 				return false;
