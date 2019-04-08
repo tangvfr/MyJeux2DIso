@@ -4,7 +4,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public enum ResourceImage implements Loading{
+public enum ResourceImage implements Loading {
 	
 	air("air"),
 	feriumegreen("block/feriume_green.png"),
