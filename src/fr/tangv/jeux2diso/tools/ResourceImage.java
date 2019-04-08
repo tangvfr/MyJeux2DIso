@@ -4,9 +4,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import fr.tangv.jeux2diso.game.Main;
-
-public enum ResourceImage {
+public enum ResourceImage implements Loading{
 	
 	air("air"),
 	feriumegreen("block/feriume_green.png"),
@@ -24,6 +22,7 @@ public enum ResourceImage {
 		this.ref = ref;
 	}
 	
+	@Override
 	public void ini() {
 		try {
 			if (ref.equalsIgnoreCase("air")) {
@@ -32,7 +31,7 @@ public enum ResourceImage {
 				image = new Image("res/image/"+ref);
 			}
 		} catch (SlickException e) {
-			Main.error(e.getMessage());
+			e.printStackTrace();
 		}
 		try {
 			Thread.sleep(1000);

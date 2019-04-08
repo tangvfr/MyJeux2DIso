@@ -1,6 +1,6 @@
 package fr.tangv.jeux2diso.tools;
 
-public enum Material {
+public enum Material implements Loading{
 	
 	air(0, (byte)0, ResourceImage.air, "air"),
 	feriume_green(1, (byte)0, ResourceImage.feriumegreen, "feriume_green"),
@@ -36,6 +36,9 @@ public enum Material {
 		this.data = data;
 		this.name = name;
 	}
+	
+	@Override
+	public void ini() {}
 	
 	public ResourceImage getResourceImage() {
 		return img;
