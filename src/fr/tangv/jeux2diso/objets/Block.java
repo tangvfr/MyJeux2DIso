@@ -5,7 +5,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.tools.EtatBlock;
-import fr.tangv.jeux2diso.tools.Location;
 import fr.tangv.jeux2diso.tools.Material;
 
 public class Block {
@@ -50,15 +49,15 @@ public class Block {
 	}
 	
 	public int getX() {
-		return location.get;
+		return location.getX();
 	}
 	
 	public int getY() {
-		return y;
+		return location.getY();
 	}
 	
 	public int getZ() {
-		return z;
+		return location.getZ();
 	}
 	
 	public World getWorld() {
