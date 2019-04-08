@@ -1,6 +1,5 @@
 package fr.tangv.jeux2diso.game;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -25,9 +24,9 @@ public class MenuMain extends BasicGameState {
 		Block block1 = new Block(null, Material.feriume_green, EtatBlock.normalblock);
 		Block block2 = new Block(null, Material.feriume_orange, EtatBlock.normalblock);
 		Block block3 = new Block(null, Material.feriume_blue, EtatBlock.normalblock);
-		FormBlockWorld.setCube(block1, new Location(0, 0, 0, worldtest), new Location(3, 0, 3, worldtest));
-		FormBlockWorld.setCubeArret(block2,  new Location(5, 0, 9, worldtest),  new Location(9, 0, 5, worldtest));
-		worldtest.setBlock(block3, new Location(0, 0, 0, worldtest));
+		FormBlockWorld.setCube(block1, new Location(8, 1, 1, worldtest), new Location(7, 2, 2, worldtest));
+		FormBlockWorld.setCubeArret(block2,  new Location(0, 1, 9, worldtest),  new Location(4, 1, 5, worldtest));
+		FormBlockWorld.setCube(block3, new Location(9, 0, 0, worldtest), new Location(0, 0, 9, worldtest));
 	}
 
 	@Override
@@ -39,8 +38,6 @@ public class MenuMain extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		ResourceImage.menumainbackground.draw(g, 0, 0);
 		worldtest.render(container, game, g);
-		g.setColor(Color.white);
-		g.fillRect(container.getWidth()/2-1, container.getHeight()/2-1, 2, 2);
 	}
 
 	@Override
