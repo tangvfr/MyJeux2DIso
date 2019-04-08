@@ -35,8 +35,8 @@ public class Load extends BasicGameState{
 		first = 0;
 		
 		loader = new Loader();
-		loader.addLoading(ResourceFont.values());
 		loader.addLoading(ResourceImage.values());
+		loader.addLoading(ResourceFont.values());
 		loader.addLoading(Material.values());
 		
 		loader.addRunnable(new Runnable() {@Override public void run() {
@@ -67,7 +67,8 @@ public class Load extends BasicGameState{
 				e1.printStackTrace();
 			}
 		} else if(!loader.next()) {
-			container.sleep(1000);
+			((App)game).agc.reinit();
+			container.sleep(500);
 			((App)game).changeState(StateId.menumain);
 		}
 	}

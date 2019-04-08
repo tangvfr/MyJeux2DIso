@@ -4,21 +4,28 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.tangv.jeux2diso.tools.EtatBlock;
 import fr.tangv.jeux2diso.tools.Material;
 
 public class Block {
-
-	private World world;
+	
+	public static Block nullblock = new Block(null, Material.air, EtatBlock.nullblock);
+	
 	private Material material;
 	private EtatBlock etat;
 	private Location location;
+	private boolean render;
 	
-	public Block(Location location, World world, Material material, EtatBlock etat) {
+	public Block(Location location, Material material, EtatBlock etat) {
 		this.location = location;
-		this.world = world;
 		this.material = material;
 		this.etat = etat;
+		this.render = false;
+	}
+	
+	public Block copy() {
+		Block block = new Block(location, material, etat);
+		block.setRender(render);
+		return block;
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -38,6 +45,14 @@ public class Block {
 		if (defaultetat) {
 			setEtatBlock(EtatBlock.normalblock);
 		}
+	}
+	
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
+	public EtatBlock getEtat() {
+		return etat;
 	}
 	
 	public Material getMaterial() {
@@ -61,7 +76,15 @@ public class Block {
 	}
 	
 	public World getWorld() {
-		return world;
+		return location.getWorld();
+	}
+	
+	public boolean getRender() {
+		return render;
+	}
+	
+	public void setRender(boolean render) {
+		this.render = render;
 	}
 	
 }
