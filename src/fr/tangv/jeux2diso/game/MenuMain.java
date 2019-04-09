@@ -15,21 +15,22 @@ import fr.tangv.jeux2diso.tools.ResourceImage;
 public class MenuMain extends BasicGameState {
 	
 	private Button buttonstartgame;
+	private Button buttonexit;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		buttonstartgame = new Button(50, 250, ResourceImage.menubutton, new ButtonAction() {
-			@Override
-			public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {
-				g.setColor(Color.white);
-				g.setFont(ResourceFont.techfont18.getFont());
-				String text = "Start Game";
-				g.drawString(text, button.getX()+(button.getWidth()/2)-(g.getFont().getWidth(text)/2), button.getY()+(button.getHeight()/2)-(g.getFont().getHeight(text)/2));
-			}
-			@Override
-			public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
-				container.sleep(100);
+		buttonstartgame = new Button(50, 250, ResourceImage.menubutton, Color.white, "Start Game", ResourceFont.techfont20, new ButtonAction() {
+			@Override public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {}
+			@Override public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
+				container.sleep(150);
 				((App)game).changeState(StateId.game);
+			}
+		}); 
+		buttonexit = new Button(50, 320, ResourceImage.menubutton, Color.white, "Quit", ResourceFont.techfont20, new ButtonAction() {
+			@Override public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {}
+			@Override public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
+				container.sleep(150);
+				((App)game).exit();
 			}
 		});
 	}
@@ -37,12 +38,14 @@ public class MenuMain extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		buttonstartgame.update(container, game, delta);
+		buttonexit.update(container, game, delta);
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		ResourceImage.menumainbackground.draw(g, 0, 0);
 		buttonstartgame.render(container, game, g);
+		buttonexit.render(container, game, g);
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package fr.tangv.jeux2diso.objets;
 
-import org.newdawn.slick.Image;
-
 public interface ColideMask {
 
 	public static ColideMask rectangle = new ColideMask() {
@@ -15,13 +13,13 @@ public interface ColideMask {
 		}
 		
 		@Override
-		public Image getMask(int width, int height) {
-			return null;
+		public boolean[][] getMask(int width, int height) {
+			return new boolean[0][0];
 		}
 		
 	};
 	
 	public boolean colide(Colide my, Colide colide);
-	public Image getMask(int width, int height);
+	public boolean[][] getMask(int width, int height);
 	
 }

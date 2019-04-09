@@ -30,4 +30,40 @@ public class Camera {
 		return z;
 	}
 	
+	public void setX(double x) {
+		this.x = x;
+	}
+	
+	public void setY(double y) {
+		this.y = y;
+	}
+	
+	public void setZ(double z) {
+		this.z = z;
+	}
+	
+	public void addX(double x) {
+		this.x += x;
+	}
+	
+	public void addY(double y) {
+		this.y += y;
+	}
+	
+	public void addZ(double z) {
+		this.z += z;
+	}
+	
+	public void setCoord(double x, double y, double z) {
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+	
+	public void addCoord(double x, double y, double z) {
+		this.x += x;
+		this.y += y;
+		this.z += z;
+	}
+	
 }

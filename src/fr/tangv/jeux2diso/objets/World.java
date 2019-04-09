@@ -4,6 +4,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.game.App;
+
 public class World {
 	
 	private Block[][][] world;
@@ -37,6 +39,29 @@ public class World {
 	
 	public Block getBlock(Location location) {
 		return world[location.getX()][location.getY()][location.getZ()];
+	}
+	
+	public float[] getCoord(Location location) {
+		int mxs = App.width/2-25;
+		int mys = App.height/2-25;
+		double lx = location.getX()+getCamera().getX();
+		double ly = location.getY()+getCamera().getY();
+		double lz = location.getZ()+getCamera().getZ();
+		float x = (float)(mxs-(21*lx)+(21*lz));
+		float y = (float)(mys-(24*ly)+(12*lx)+(12*lz));
+		return new float[]{x, y};
+	}
+	
+	public Location getLocation(float x, float y) {
+		
+		int mxs = App.width/2-25;
+		int mys = App.height/2-25;
+		double lx = getCamera().getX();
+		double ly = getCamera().getY();
+		double lz = getCamera().getZ();
+		float x = (float)(mxs-(21*lx)+(21*lz));
+		float y = (float)(mys-(24*ly)+(12*lx)+(12*lz));
+		
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {

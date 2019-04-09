@@ -19,18 +19,21 @@ public class Game extends BasicGameState {
 	private World worldtest;
 	
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
-		worldtest = new World(10, 10, 10, "World_Test");
+	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		worldtest = new World(20, 10, 20, "World_Test");
 		
 		Block block1 = new Block(null, Material.feriume_green, EtatBlock.normalblock);
 		Block block2 = new Block(null, Material.feriume_orange, EtatBlock.normalblock);
 		Block block3 = new Block(null, Material.feriume_blue, EtatBlock.normalblock);
 		
+		Block blocks = new Block(null, Material.feriume_blue, EtatBlock.selectblock);
+		
 		FormBlockWorld.setCube(block1, new Location(8, 1, 1, worldtest), new Location(7, 2, 2, worldtest));
 		FormBlockWorld.setCubeArret(block2,  new Location(0, 1, 9, worldtest),  new Location(4, 1, 5, worldtest));
-		FormBlockWorld.setCube(block3, new Location(9, 0, 0, worldtest), new Location(0, 0, 9, worldtest));
+		FormBlockWorld.setCube(block3, new Location(19, 0, 0, worldtest), new Location(0, 0, 19, worldtest));
+	
 	}
-
+	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		Input input = container.getInput();
@@ -38,23 +41,24 @@ public class Game extends BasicGameState {
 			((App)game).changeState(StateId.menumain);
 		}
 		
-		if(input.isKeyPressed(Input.KEY_DOWN)) {
-			
-		}
+		double cof = 0.5f;
 		if(input.isKeyPressed(Input.KEY_UP)) {
-			
+			worldtest.getCamera().addZ(cof);
+		}
+		if(input.isKeyPressed(Input.KEY_DOWN)) {
+			worldtest.getCamera().addZ(-cof);
 		}
 		if(input.isKeyPressed(Input.KEY_LEFT)) {
-			
+			worldtest.getCamera().addX(-cof);
 		}
 		if(input.isKeyPressed(Input.KEY_RIGHT)) {
-			
+			worldtest.getCamera().addX(cof);
 		}
 		if(input.isKeyPressed(Input.KEY_NEXT)) {
-			
+			worldtest.getCamera().addY(cof);
 		}
-		if(input.isKeyPressed(Input.KEY_BACK)) {
-			
+		if(input.isKeyPressed(Input.KEY_PRIOR)) {
+			worldtest.getCamera().addY(-cof);
 		}
 		
 		worldtest.update(container, game, delta);
@@ -63,6 +67,7 @@ public class Game extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		worldtest.render(container, game, g);
+		g.fillRect(container.getWidth()/2-1, container.getHeight()/2-1, 2, 2);
 	}
 
 	@Override

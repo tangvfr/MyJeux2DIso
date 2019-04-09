@@ -2,10 +2,10 @@ package fr.tangv.jeux2diso.objets;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.tools.Material;
+import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public interface EtatBlock {
 	
@@ -16,22 +16,14 @@ public interface EtatBlock {
 	
 	public static EtatBlock normalblock = new EtatBlock() {
 		
-		public void renderImage(GameContainer container, StateBasedGame game, Graphics g, Block block, Image image) {
-			int mxs = container.getWidth()/2-25;
-			int mys = container.getHeight()/2-25;
-			double lx = block.getX()+block.getWorld().getCamera().getX();
-			double ly = block.getY()+block.getWorld().getCamera().getY();
-			double lz = block.getZ()+block.getWorld().getCamera().getZ();
-			float x = (float)(mxs-(21*lx)+(21*lz));
-			float y = (float)(mys-(24*ly)+(12*lx)+(12*lz));
-			g.drawImage(image, x, y);
-		}
-		
 		@Override
 		public void update(GameContainer container, StateBasedGame game, int delta, Block block) {
 			if (block.getMaterial().equals(Material.air)) {
 				block.setRender(false);
 			} else {
+				float[] coord = block.getWorld().getCoord(block.getLocation());
+				block.setXaf(coord[0]);
+				block.setYaf(coord[1]);
 				block.setRender(true);
 			}
 		}
@@ -39,10 +31,29 @@ public interface EtatBlock {
 		@Override
 		public void render(GameContainer container, StateBasedGame game, Graphics g, Block block) {
 			if(block.getRender()) {
-				renderImage(container, game, g, block, block.getMaterial().getResourceImage().getImage());
+				block.getMaterial().getResourceImage().draw(g, block.getXaf(), block.getYaf());
 			}
 		}
 		
+	};
+	
+	public static EtatBlock selectblock = new EtatBlock() {
+		
+		@Override
+		public void update(GameContainer container, StateBasedGame game, int delta, Block block) {
+			float[] coord = block.getWorld().getCoord(block.getLocation());
+			block.setXaf(coord[0]);
+			block.setYaf(coord[1]);
+			block.setRender(true);
+		}
+		
+		@Override
+		public void render(GameContainer container, StateBasedGame game, Graphics g, Block block) {
+			if(block.getRender()) {
+				block.getMaterial().getResourceImage().draw(g, block.getXaf(), block.getYaf());
+				ResourceImage.selectblock.draw(g, block.getXaf(), block.getYaf());
+			}
+		}
 	};
 	
 	public void update(GameContainer container, StateBasedGame game, int delta, Block block);

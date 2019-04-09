@@ -51,14 +51,6 @@ public class Load extends BasicGameState{
 				game.addState(new Game());
 			}});
 			
-			loader.addLoading(new Loading() {@Override public void ini() {
-				try {
-					((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
-				} catch (SlickException e) {
-					e.printStackTrace();
-				}
-			}});
-			
 			loader.start();
 		}
 	}
@@ -78,6 +70,7 @@ public class Load extends BasicGameState{
 		} else if(!loader.next()) {
 			((App)game).agc.reinit();
 			container.sleep(500);
+			((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
 			((App)game).changeState(StateId.menumain);
 		}
 	}

@@ -4,6 +4,7 @@ import org.newdawn.slick.SlickException;
 
 public class Main {
 	
+	//comencé le 08/04/2019
 	public static byte first = 0;
 	
 	public static void sendConsol(String string) {

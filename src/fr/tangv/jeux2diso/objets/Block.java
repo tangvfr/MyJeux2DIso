@@ -14,6 +14,24 @@ public class Block {
 	private EtatBlock etat;
 	private Location location;
 	private boolean render;
+	private float xaf;
+	private float yaf;
+	
+	public void setXaf(float xaf) {
+		this.xaf= xaf;
+	}
+	
+	public void setYaf(float yaf) {
+		this.yaf= yaf;
+	}
+	
+	public float getXaf() {
+		return xaf;
+	}
+	
+	public float getYaf() {
+		return yaf;
+	}
 	
 	public Block(Location location, Material material, EtatBlock etat) {
 		this.location = location;
