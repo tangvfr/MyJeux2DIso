@@ -1,8 +1,6 @@
 package fr.tangv.jeux2diso.game;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,14 +10,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
-import javax.swing.SpringLayout.Constraints;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -78,9 +72,10 @@ public class MaskConvert {
 						tpane.setEditable(false);
 						tpane.select(0, text.length());
 						JScrollPane spane = new JScrollPane(tpane);
-						JLabel it = new JLabel(new ImageIcon(mask));
-						frame.getContentPane().add(spane, );
-						frame.getContentPane().add(menu);
+						JLabel label = new JLabel(new ImageIcon(mask));
+						JScrollPane spane2 = new JScrollPane(label);
+						JSplitPane split = new JSplitPane(0, spane2, spane);
+						frame.getContentPane().add(split);
 						frame.setVisible(true);
 					} catch (IOException e) {
 						sendMessageError("Error with read image/file");
