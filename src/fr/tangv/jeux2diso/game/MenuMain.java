@@ -22,12 +22,13 @@ public class MenuMain extends BasicGameState {
 			@Override
 			public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {
 				g.setColor(Color.white);
-				g.setFont(ResourceFont.techfont16.getFont());
+				g.setFont(ResourceFont.techfont18.getFont());
 				String text = "Start Game";
 				g.drawString(text, button.getX()+(button.getWidth()/2)-(g.getFont().getWidth(text)/2), button.getY()+(button.getHeight()/2)-(g.getFont().getHeight(text)/2));
 			}
 			@Override
 			public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
+				container.sleep(100);
 				((App)game).changeState(StateId.game);
 			}
 		});

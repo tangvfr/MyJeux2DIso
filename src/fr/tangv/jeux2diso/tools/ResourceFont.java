@@ -13,9 +13,9 @@ public enum ResourceFont implements Loading {
 	numfont20("alarm_clock.ttf", 20.0f),
 	techfont20("ethnocentric_rg.ttf", 20.0f),
 	
-	magicfont16("Elementary_Gothic_Bookhand.ttf", 16.0f),
-	numfont16("alarm_clock.ttf", 16.0f),
-	techfont16("ethnocentric_rg.ttf", 16.0f);
+	magicfont18("Elementary_Gothic_Bookhand.ttf", 18.0f),
+	numfont18("alarm_clock.ttf", 18.0f),
+	techfont18("ethnocentric_rg.ttf", 18.0f);
 	
 	private TrueTypeFont truefont;
 	private float taile;

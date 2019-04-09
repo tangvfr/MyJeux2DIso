@@ -70,8 +70,8 @@ public class Load extends BasicGameState{
 		} else if (Main.first == 1) {
 			Main.first = 2;
 			try {
-				Font font = Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream("res/font/Transformers_Movie.ttf"));
-				this.font = new TrueTypeFont(font.deriveFont(50.0f), false);
+				Font font = Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream("res/font/ethnocentric_rg.ttf"));
+				this.font = new TrueTypeFont(font.deriveFont(36.0f), false);
 			} catch (FontFormatException | IOException e1) {
 				e1.printStackTrace();
 			}
@@ -79,8 +79,6 @@ public class Load extends BasicGameState{
 			((App)game).agc.reinit();
 			container.sleep(500);
 			((App)game).changeState(StateId.menumain);
-		} else {
-			container.sleep(100);
 		}
 	}
 	

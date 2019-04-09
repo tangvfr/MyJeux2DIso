@@ -6,11 +6,11 @@ public interface ColideMask {
 
 	public static ColideMask rectangle = new ColideMask() {
 		@Override
-		public boolean colide(Colide colide, Colide colidetest) {
-			if (colidetest.getMaxX() > colide.getMinX()) return false;
-			if (colidetest.getMaxY() > colide.getMinY()) return false;
-			if (colidetest.getMinX() < colide.getMaxX()) return false;
-			if (colidetest.getMinY() < colide.getMaxY()) return false;
+		public boolean colide(Colide my, Colide colide) {
+			if (colide.getMaxX() < my.getMinX()) return false;
+			if (colide.getMaxY() < my.getMinY()) return false;
+			if (colide.getMinX() >= my.getMaxX()) return false;
+			if (colide.getMinY() >= my.getMaxY()) return false;
 			return true;
 		}
 		
@@ -21,7 +21,7 @@ public interface ColideMask {
 		
 	};
 	
-	public boolean colide(Colide colide, Colide colidetest);
+	public boolean colide(Colide my, Colide colide);
 	public Image getMask(int width, int height);
 	
 }
