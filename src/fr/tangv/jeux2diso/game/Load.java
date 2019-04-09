@@ -20,6 +20,7 @@ import fr.tangv.jeux2diso.tools.Material;
 import fr.tangv.jeux2diso.tools.ResourceAnim;
 import fr.tangv.jeux2diso.tools.ResourceFont;
 import fr.tangv.jeux2diso.tools.ResourceImage;
+import fr.tangv.jeux2diso.tools.ResourceLangue;
 
 public class Load extends BasicGameState{
 	
@@ -40,6 +41,7 @@ public class Load extends BasicGameState{
 			loader.addLoading(ResourceFont.values());
 			loader.addLoading(Material.values());
 			loader.addLoading(ResourceAnim.values());
+			loader.addLoading(ResourceLangue.values());
 			
 			loader.addLoading(new Loading() {@Override public void ini() {
 				game.addState(new MenuMain());

@@ -1,5 +1,6 @@
 package fr.tangv.jeux2diso.game;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -20,7 +21,8 @@ public class MenuMain extends BasicGameState {
 		buttonstartgame = new Button(50, 250, ResourceImage.menubutton, new ButtonAction() {
 			@Override
 			public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {
-				g.setFont(ResourceFont.magicfont20.getFont());
+				g.setColor(Color.white);
+				g.setFont(ResourceFont.techfont16.getFont());
 				String text = "Start Game";
 				g.drawString(text, button.getX()+(button.getWidth()/2)-(g.getFont().getWidth(text)/2), button.getY()+(button.getHeight()/2)-(g.getFont().getHeight(text)/2));
 			}

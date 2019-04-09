@@ -43,13 +43,10 @@ public class Colide {
 	}
 	
 	public boolean colide(Colide colide) {
-		while (true) {
-			if (colide.getMaxX() > minx) break;
-			if (colide.getMaxY() > miny) break;
-			if (colide.getMinX() < maxx) break;
-			if (colide.getMinY() < maxx) break;
-			return false;
-		}
+		if (colide.getMaxX() > minx) return false;
+		if (colide.getMaxY() > miny) return false;
+		if (colide.getMinX() < maxx) return false;
+		if (colide.getMinY() < maxy) return false;
 		return colidemask.colide(this, colide);
 	}
 	

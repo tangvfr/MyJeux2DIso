@@ -7,11 +7,11 @@ public interface ColideMask {
 	public static ColideMask rectangle = new ColideMask() {
 		@Override
 		public boolean colide(Colide colide, Colide colidetest) {
-			if (colide.getMaxX() > colidetest.getMinX()) return true;
-			if (colide.getMaxY() > colidetest.getMinY()) return true;
-			if (colide.getMinX() < colidetest.getMaxX()) return true;
-			if (colide.getMinY() < colidetest.getMaxX()) return true;
-			return false;
+			if (colidetest.getMaxX() > colide.getMinX()) return false;
+			if (colidetest.getMaxY() > colide.getMinY()) return false;
+			if (colidetest.getMinX() < colide.getMaxX()) return false;
+			if (colidetest.getMinY() < colide.getMaxY()) return false;
+			return true;
 		}
 		
 		@Override
