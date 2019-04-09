@@ -12,7 +12,6 @@ import fr.tangv.jeux2diso.objets.Location;
 import fr.tangv.jeux2diso.objets.World;
 import fr.tangv.jeux2diso.tools.FormBlockWorld;
 import fr.tangv.jeux2diso.tools.Material;
-import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public class Game extends BasicGameState {
 
@@ -33,13 +32,11 @@ public class Game extends BasicGameState {
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		
 		worldtest.update(container, game, delta);
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		ResourceImage.menumainbackground.draw(g, 0, 0);
 		worldtest.render(container, game, g);
 	}
 

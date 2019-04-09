@@ -6,6 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.tools.ResourceImage;
+
 public class MenuMain extends BasicGameState {
 	
 	@Override
@@ -20,7 +22,7 @@ public class MenuMain extends BasicGameState {
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		
+		ResourceImage.menumainbackground.draw(g, 0, 0);
 	}
 
 	@Override
