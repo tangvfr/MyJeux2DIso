@@ -7,7 +7,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class World {
 	
 	private Block[][][] world;
-	private Location camera;
+	private Camera camera;
 	private int maxx;
 	private int maxy;
 	private int maxz;
@@ -21,7 +21,7 @@ public class World {
 		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++) {
 			setBlock(Block.nullblock, new Location(x, y, z, this));
 		}
-		camera = new Location(0, 0, 0, this);
+		camera = new Camera(0.0, 0.0, 0.0, this);
 		this.name = name;
 	}
 	
@@ -51,7 +51,7 @@ public class World {
 		}
 	}
 	
-	public Location getCamera() {
+	public Camera getCamera() {
 		return camera;
 	}
 	

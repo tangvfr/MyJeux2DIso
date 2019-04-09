@@ -7,17 +7,7 @@ public class Loader {
 	private boolean start = false;
 	private int number;
 	private int numbercursor;
-	ArrayList<Runnable> listrunnable = new ArrayList<Runnable>();
 	ArrayList<Loading> listloading = new ArrayList<Loading>();
-	
-	public boolean addRunnable(Runnable runnable) {
-		if (!start) {
-			listrunnable.add(runnable);
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
 	public boolean addLoading(Loading[] loading) {
 		if (!start) {
@@ -42,7 +32,7 @@ public class Loader {
 	public boolean start() {
 		if (!start) {
 			start = true;
-			number = listrunnable.size() + listloading.size();
+			number = listloading.size();
 			numbercursor = 0;
 			return true;
 		} else {
@@ -66,12 +56,8 @@ public class Loader {
 		if (!start) {
 			return false;
 		} else {
-			if(numbercursor < listloading.size()) {
+			if(numbercursor < number) {
 				listloading.get(numbercursor).ini();
-				numbercursor++;
-				return true;
-			}else if(numbercursor < number) {
-				listrunnable.get(numbercursor-listloading.size()).run();
 				numbercursor++;
 				return true;
 			} else {

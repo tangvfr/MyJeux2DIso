@@ -15,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.ResourceLoader;
 
 import fr.tangv.jeux2diso.tools.Loader;
+import fr.tangv.jeux2diso.tools.Loading;
 import fr.tangv.jeux2diso.tools.Material;
 import fr.tangv.jeux2diso.tools.ResourceFont;
 import fr.tangv.jeux2diso.tools.ResourceImage;
@@ -39,11 +40,11 @@ public class Load extends BasicGameState{
 		loader.addLoading(ResourceFont.values());
 		loader.addLoading(Material.values());
 		
-		loader.addRunnable(new Runnable() {@Override public void run() {
+		loader.addLoading(new Loading() {@Override public void ini() {
 			game.addState(new MenuMain());
 		}});
 		
-		loader.addRunnable(new Runnable() {@Override public void run() {
+		loader.addLoading(new Loading() {@Override public void ini() {
 			try {
 				((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
 			} catch (SlickException e) {
@@ -71,6 +72,11 @@ public class Load extends BasicGameState{
 			container.sleep(500);
 			((App)game).changeState(StateId.menumain);
 		}
+		try {
+			Thread.sleep(250);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -79,8 +85,21 @@ public class Load extends BasicGameState{
 		g.setColor(Color.black);
 		if(font != null) {
 			g.setFont(font);
-			String text = "Loading: "+((int)((loader.getCursor())/(double)loader.getMax()*1000))/10.+"%";
+			String text = "Loading: "+((int)((loader.getCursor())/(double)loader.getMax()*1000)/10.)+"%";
 			g.drawString(text, (container.getWidth()/2)-(g.getFont().getWidth(text)/2), container.getHeight()-(g.getFont().getHeight(text))-20);
+			drawCercle(g, (container.getWidth()/2)-50, (container.getHeight()/2)-50, 100, loader.getCursor(), loader.getMax());
+		}
+	}
+	
+	private void drawCercle(Graphics g,int x, int y,int rayon, int value, int max) {
+		g.setColor(Color.blue);
+		double tpart = 100;
+		double part = (Math.PI*2)/tpart;
+		int maxpart = (int)(value/(double)max/tpart);
+		for(int i = 0; i < maxpart; i++) {
+			int xa = (int)(Math.cos(part*i)*rayon);
+			int ya = (int)(Math.sin(part*i)*rayon);
+			g.drawLine(x, y+ya, x+xa, y+ya);
 		}
 	}
 
