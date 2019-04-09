@@ -32,7 +32,7 @@ public interface ColideMask {
 		
 		@Override
 		public boolean[][] getMask(int width, int height) {
-			boolean[][] mask = 
+			
 			return mask;
 		}
 		
