@@ -37,6 +37,26 @@ public class Game extends BasicGameState {
 		if(input.isKeyDown(Input.KEY_ESCAPE)) {
 			((App)game).changeState(StateId.menumain);
 		}
+		
+		if(input.isKeyPressed(Input.KEY_DOWN)) {
+			
+		}
+		if(input.isKeyPressed(Input.KEY_UP)) {
+			
+		}
+		if(input.isKeyPressed(Input.KEY_LEFT)) {
+			
+		}
+		if(input.isKeyPressed(Input.KEY_RIGHT)) {
+			
+		}
+		if(input.isKeyPressed(Input.KEY_NEXT)) {
+			
+		}
+		if(input.isKeyPressed(Input.KEY_BACK)) {
+			
+		}
+		
 		worldtest.update(container, game, delta);
 	}
 	
