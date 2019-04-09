@@ -2,7 +2,6 @@ package fr.tangv.jeux2diso.tools;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 public enum ResourceAnim implements Loading {
 	

@@ -23,7 +23,7 @@ public class Colide {
 	}
 	
 	public Colide (double x, double y) {
-		setColide(x, y, 0, 0, );
+		setColide(x, y, 0, 0, ColideMask.rectangle);
 	}
 	
 	public double getMaxX() {
@@ -40,6 +40,17 @@ public class Colide {
 	
 	public double getMinY() {
 		return miny;
+	}
+	
+	public boolean colide(Colide colide) {
+		while (true) {
+			if (colide.getMaxX() > minx) break;
+			if (colide.getMaxY() > miny) break;
+			if (colide.getMinX() < maxx) break;
+			if (colide.getMinY() < maxx) break;
+			return false;
+		}
+		return colidemask.colide(this, colide);
 	}
 	
 }

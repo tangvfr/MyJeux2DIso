@@ -27,45 +27,45 @@ public class Load extends BasicGameState{
 	private Image imageloadcursor;
 	private Loader loader;
 	private TrueTypeFont font;
-	private byte first;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		imageloadbackground = new Image("res/image/gui/load/background.png");
-		imageloadcursor = new Image("res/image/gui/load/cursor.png");
-		((App)game).agc.setMouseCursor(imageloadcursor, 0, 0);
-		first = 0;
-		
-		loader = new Loader();
-		loader.addLoading(ResourceImage.values());
-		loader.addLoading(ResourceFont.values());
-		loader.addLoading(Material.values());
-		loader.addLoading(ResourceAnim.values());
-		
-		loader.addLoading(new Loading() {@Override public void ini() {
-			game.addState(new MenuMain());
-		}});
-		
-		loader.addLoading(new Loading() {@Override public void ini() {
-			try {
-				((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-		}});
-		
-		loader.start();
+		if (Main.first == 0) {
+			imageloadbackground = new Image("res/image/gui/load/background.png");
+			imageloadcursor = new Image("res/image/gui/load/cursor.png");
+			((App)game).agc.setMouseCursor(imageloadcursor, 0, 0);
+			
+			loader = new Loader();
+			loader.addLoading(ResourceImage.values());
+			loader.addLoading(ResourceFont.values());
+			loader.addLoading(Material.values());
+			loader.addLoading(ResourceAnim.values());
+			
+			loader.addLoading(new Loading() {@Override public void ini() {
+				game.addState(new MenuMain());
+			}});
+			
+			loader.addLoading(new Loading() {@Override public void ini() {
+				try {
+					((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
+				} catch (SlickException e) {
+					e.printStackTrace();
+				}
+			}});
+			
+			loader.start();
+		}
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
-		if (first == 0) {
-			first = 1;
-		} else if (first == 1) {
-			first = 2;
+		if (Main.first == 0) {
+			Main.first = 1;
+		} else if (Main.first == 1) {
+			Main.first = 2;
 			try {
 				Font font = Font.createFont(Font.TRUETYPE_FONT, ResourceLoader.getResourceAsStream("res/font/Transformers_Movie.ttf"));
-				this.font = new TrueTypeFont(font.deriveFont(60.0f), false);
+				this.font = new TrueTypeFont(font.deriveFont(50.0f), false);
 			} catch (FontFormatException | IOException e1) {
 				e1.printStackTrace();
 			}
@@ -74,29 +74,34 @@ public class Load extends BasicGameState{
 			container.sleep(500);
 			((App)game).changeState(StateId.menumain);
 		}
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		imageloadbackground.draw(0, 0);
-		g.setColor(Color.black);
+		
+		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 208, Color.darkGray);
+		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 198, Color.gray);
+		drawEvolution(g, (container.getWidth()/2), (container.getHeight()/2), 200, loader.getCursor(), loader.getMax(), Color.decode("0x0094c7"));
+		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 190, Color.darkGray);
+		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 180, Color.decode("0x909090"));
+		
 		if(font != null) {
+			g.setColor(Color.black);
 			g.setFont(font);
-			String text = "Loading: "+((int)((loader.getCursor())/(double)loader.getMax()*1000)/10.)+"%";
-			g.drawString(text, (container.getWidth()/2)-(g.getFont().getWidth(text)/2), container.getHeight()-(g.getFont().getHeight(text))-20);
-			drawEvolution(g, (container.getWidth()/2), (container.getHeight()/2), 200, 150, loader.getCursor(), loader.getMax());
+			String text = ((int)((loader.getCursor())/(double)loader.getMax()*1000)/10.)+"%";
+			g.drawString(text, (container.getWidth()/2)-(g.getFont().getWidth(text)/2), (container.getHeight()/2)-(g.getFont().getHeight(text)/2));
 		}
 	}
 	
-	private void drawEvolution(Graphics g,int x, int y,int diametre, int diametrein, int value, int max) {
-		g.setColor(Color.blue);
+	private void fillCercle(Graphics g ,int x, int y, int diametre, Color color) {
+		g.setColor(color);
+		g.fillOval(x-diametre/2, y-diametre/2, diametre, diametre);
+	}
+	
+	private void drawEvolution(Graphics g,int x, int y,int diametre, int value, int max, Color color) {
+		g.setColor(color);
 		g.fillArc(x-diametre/2,y-diametre/2, diametre, diametre, -90, (float)(value/(double)max*360)-90);
-		g.setColor(Color.white);
 	}
 
 	@Override

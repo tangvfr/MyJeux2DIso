@@ -4,6 +4,8 @@ import org.newdawn.slick.SlickException;
 
 public class Main {
 	
+	public static byte first = 0;
+	
 	public static void sendConsol(String string) {
 		System.out.println("[Jeux2DIso] "+string);
 	}
