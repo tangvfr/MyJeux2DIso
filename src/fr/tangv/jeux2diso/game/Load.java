@@ -17,6 +17,7 @@ import org.newdawn.slick.util.ResourceLoader;
 import fr.tangv.jeux2diso.tools.Loader;
 import fr.tangv.jeux2diso.tools.Loading;
 import fr.tangv.jeux2diso.tools.Material;
+import fr.tangv.jeux2diso.tools.ResourceAnim;
 import fr.tangv.jeux2diso.tools.ResourceFont;
 import fr.tangv.jeux2diso.tools.ResourceImage;
 
@@ -39,6 +40,7 @@ public class Load extends BasicGameState{
 		loader.addLoading(ResourceImage.values());
 		loader.addLoading(ResourceFont.values());
 		loader.addLoading(Material.values());
+		loader.addLoading(ResourceAnim.values());
 		
 		loader.addLoading(new Loading() {@Override public void ini() {
 			game.addState(new MenuMain());
@@ -73,7 +75,7 @@ public class Load extends BasicGameState{
 			((App)game).changeState(StateId.menumain);
 		}
 		try {
-			Thread.sleep(250);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -87,20 +89,14 @@ public class Load extends BasicGameState{
 			g.setFont(font);
 			String text = "Loading: "+((int)((loader.getCursor())/(double)loader.getMax()*1000)/10.)+"%";
 			g.drawString(text, (container.getWidth()/2)-(g.getFont().getWidth(text)/2), container.getHeight()-(g.getFont().getHeight(text))-20);
-			drawCercle(g, (container.getWidth()/2)-50, (container.getHeight()/2)-50, 100, loader.getCursor(), loader.getMax());
+			drawEvolution(g, (container.getWidth()/2), (container.getHeight()/2), 200, 150, loader.getCursor(), loader.getMax());
 		}
 	}
 	
-	private void drawCercle(Graphics g,int x, int y,int rayon, int value, int max) {
+	private void drawEvolution(Graphics g,int x, int y,int diametre, int diametrein, int value, int max) {
 		g.setColor(Color.blue);
-		double tpart = 100;
-		double part = (Math.PI*2)/tpart;
-		int maxpart = (int)(value/(double)max/tpart);
-		for(int i = 0; i < maxpart; i++) {
-			int xa = (int)(Math.cos(part*i)*rayon);
-			int ya = (int)(Math.sin(part*i)*rayon);
-			g.drawLine(x, y+ya, x+xa, y+ya);
-		}
+		g.fillArc(x-diametre/2,y-diametre/2, diametre, diametre, -90, (float)(value/(double)max*360)-90);
+		g.setColor(Color.white);
 	}
 
 	@Override

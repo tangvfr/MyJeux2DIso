@@ -13,7 +13,7 @@ public enum ResourceImage implements Loading {
 	
 	menumainbackground("gui/menumain/background.png"),
 	cursor("gui/cursor.png"),
-	menubutton("gui/buttonmenu.png");
+	menubutton("gui/button/buttonmenu.png");
 	
 	private Image image;
 	private String ref;
