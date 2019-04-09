@@ -1,5 +1,7 @@
 package fr.tangv.jeux2diso.objets;
 
+import fr.tangv.jeux2diso.tools.Mask;
+
 public interface ColideMask {
 
 	public static ColideMask rectangle = new ColideMask() {
@@ -32,8 +34,7 @@ public interface ColideMask {
 		
 		@Override
 		public boolean[][] getMask(int width, int height) {
-			
-			return mask;
+			return Mask.maskblockfull;
 		}
 		
 	};
