@@ -55,8 +55,8 @@ public class World {
 	public Block getBlock(Colide colide) {
 		for (int y = maxy-1; y >= 0; y--) for (int x = maxx-1; x >= 0; x--) for (int z = maxz-1; z >= 0; z--) {
 			Block block = getBlock(x, y, z);
-			if (block.getRender()) {//chnager le masque
-				Colide colideblock = new Colide(block.getXaf(), block.getYaf(), 49, 49, ColideMask.rectangle);
+			if (block.getRender()) {
+				Colide colideblock = new Colide(block.getXaf(), block.getYaf(), 49, 49, ColideMask.block);
 				if (colide.colide(colideblock)) {
 					return block;
 				}
