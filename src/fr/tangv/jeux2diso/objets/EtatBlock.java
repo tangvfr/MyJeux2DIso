@@ -9,7 +9,7 @@ import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public interface EtatBlock {
 	
-	public static EtatBlock nullblock = new EtatBlock() {
+	public static EtatBlock nulletat = new EtatBlock() {
 		@Override public void update(GameContainer container, StateBasedGame game, int delta, Block block) {}
 		@Override public void render(GameContainer container, StateBasedGame game, Graphics g, Block block) {}
 	};

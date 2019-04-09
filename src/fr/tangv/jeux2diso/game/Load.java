@@ -17,6 +17,7 @@ import org.newdawn.slick.util.ResourceLoader;
 import fr.tangv.jeux2diso.tools.Loader;
 import fr.tangv.jeux2diso.tools.Loading;
 import fr.tangv.jeux2diso.tools.Material;
+import fr.tangv.jeux2diso.tools.Parametre;
 import fr.tangv.jeux2diso.tools.ResourceAnim;
 import fr.tangv.jeux2diso.tools.ResourceFont;
 import fr.tangv.jeux2diso.tools.ResourceImage;
@@ -40,6 +41,7 @@ public class Load extends BasicGameState{
 			loader.addLoading(ResourceImage.values());
 			loader.addLoading(ResourceFont.values());
 			loader.addLoading(Material.values());
+			loader.addLoading(Parametre.parametre);
 			loader.addLoading(ResourceAnim.values());
 			loader.addLoading(ResourceLangue.values());
 			

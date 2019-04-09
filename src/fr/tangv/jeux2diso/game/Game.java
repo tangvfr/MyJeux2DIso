@@ -8,6 +8,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.objets.Block;
+import fr.tangv.jeux2diso.objets.Colide;
 import fr.tangv.jeux2diso.objets.EtatBlock;
 import fr.tangv.jeux2diso.objets.Location;
 import fr.tangv.jeux2diso.objets.World;
@@ -62,8 +63,18 @@ public class Game extends BasicGameState {
 			worldtest.getCamera().addY(-cof);
 		}
 		
-		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			if(blockselect != null) blockselect.setEtatBlock(acetat);
+		if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+			Colide mouse = new Colide(input.getMouseX(), input.getMouseY());
+			Block block = worldtest.getBlock(mouse);
+			if (block != null) {
+				if (blockselect != null) blockselect.setEtatBlock(acetat);
+				acetat = block.getEtat();
+				block.setEtatBlock(EtatBlock.selectblock);
+				blockselect = block;
+			} else {
+				if (blockselect != null) blockselect.setEtatBlock(acetat);
+				blockselect = null;
+			}
 			
 		}
 		

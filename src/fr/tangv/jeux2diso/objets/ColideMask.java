@@ -23,6 +23,21 @@ public interface ColideMask {
 		
 	};
 	
+	public static ColideMask block = new ColideMask() {
+		@Override
+		public boolean colide(Colide my, Colide colide) {
+			
+			return true;
+		}
+		
+		@Override
+		public boolean[][] getMask(int width, int height) {
+			boolean[][] mask = 
+			return mask;
+		}
+		
+	};
+	
 	public boolean colide(Colide my, Colide colide);
 	public boolean[][] getMask(int width, int height);
 	
