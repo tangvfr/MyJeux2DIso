@@ -14,7 +14,11 @@ public interface ColideMask {
 		
 		@Override
 		public boolean[][] getMask(int width, int height) {
-			return new boolean[0][0];
+			boolean[][] mask = new boolean[width][height];
+			for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) {
+				mask[x][y] = true;
+			}
+			return mask;
 		}
 		
 	};

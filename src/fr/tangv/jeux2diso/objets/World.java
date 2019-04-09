@@ -52,16 +52,17 @@ public class World {
 		return new float[]{x, y};
 	}
 	
-	public Location getLocation(float x, float y) {
-		
-		int mxs = App.width/2-25;
-		int mys = App.height/2-25;
-		double lx = getCamera().getX();
-		double ly = getCamera().getY();
-		double lz = getCamera().getZ();
-		float x = (float)(mxs-(21*lx)+(21*lz));
-		float y = (float)(mys-(24*ly)+(12*lx)+(12*lz));
-		
+	public Block getBlock(Colide colide) {
+		for (int y = maxy-1; y >= 0; y++) for (int x = maxx-1; x >= 0; x++) for (int z = maxz-1; z >= 0; z++) {
+			Block block = getBlock(x, y, z);
+			if (block.getRender()) {
+				Colide colideblock = new Colide(block.getXaf()+25, block.getYaf()+25, 49, 49, ColideMask.rectangle);
+				if (colide.colide(colideblock)) {
+					return block;
+				}
+			}
+		}
+		return null;
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {

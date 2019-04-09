@@ -26,39 +26,45 @@ public class Game extends BasicGameState {
 		Block block2 = new Block(null, Material.feriume_orange, EtatBlock.normalblock);
 		Block block3 = new Block(null, Material.feriume_blue, EtatBlock.normalblock);
 		
-		Block blocks = new Block(null, Material.feriume_blue, EtatBlock.selectblock);
-		
 		FormBlockWorld.setCube(block1, new Location(8, 1, 1, worldtest), new Location(7, 2, 2, worldtest));
 		FormBlockWorld.setCubeArret(block2,  new Location(0, 1, 9, worldtest),  new Location(4, 1, 5, worldtest));
 		FormBlockWorld.setCube(block3, new Location(19, 0, 0, worldtest), new Location(0, 0, 19, worldtest));
 	
 	}
 	
+	private Block blockselect;
+	private EtatBlock acetat;
+	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		Input input = container.getInput();
-		if(input.isKeyDown(Input.KEY_ESCAPE)) {
+		if (input.isKeyDown(Input.KEY_ESCAPE)) {
 			((App)game).changeState(StateId.menumain);
 		}
 		
 		double cof = 0.5f;
-		if(input.isKeyPressed(Input.KEY_UP)) {
+		if (input.isKeyPressed(Input.KEY_UP)) {
 			worldtest.getCamera().addZ(cof);
 		}
-		if(input.isKeyPressed(Input.KEY_DOWN)) {
+		if (input.isKeyPressed(Input.KEY_DOWN)) {
 			worldtest.getCamera().addZ(-cof);
 		}
-		if(input.isKeyPressed(Input.KEY_LEFT)) {
+		if (input.isKeyPressed(Input.KEY_LEFT)) {
 			worldtest.getCamera().addX(-cof);
 		}
-		if(input.isKeyPressed(Input.KEY_RIGHT)) {
+		if (input.isKeyPressed(Input.KEY_RIGHT)) {
 			worldtest.getCamera().addX(cof);
 		}
-		if(input.isKeyPressed(Input.KEY_NEXT)) {
+		if (input.isKeyPressed(Input.KEY_NEXT)) {
 			worldtest.getCamera().addY(cof);
 		}
-		if(input.isKeyPressed(Input.KEY_PRIOR)) {
+		if (input.isKeyPressed(Input.KEY_PRIOR)) {
 			worldtest.getCamera().addY(-cof);
+		}
+		
+		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
+			if(blockselect != null) blockselect.setEtatBlock(acetat);
+			
 		}
 		
 		worldtest.update(container, game, delta);
