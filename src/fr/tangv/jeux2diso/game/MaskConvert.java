@@ -45,9 +45,9 @@ public class MaskConvert {
 						}
 						String text = "boolean[][] mask = new boolean[][] {";
 						BufferedImage mask = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
-						for (int y = 0; y < image.getHeight(); y++) {
+						for (int x = 0; x < image.getWidth(); x++) {
 							String line = "\n{";
-							for (int x = 0; x < image.getWidth(); x++) {
+							for (int y = 0; y < image.getHeight(); y++) {
 								System.out.println(y+":"+x);
 								Color color = new Color(image.getRGB(x, y));
 								if (color.getRed()  >= 128 && color.getGreen() >= 128 && color.getBlue() >= 128) {
@@ -56,10 +56,10 @@ public class MaskConvert {
 								} else {
 									line += "false";
 								}
-								if (x < image.getWidth()-1)
+								if (y < image.getWidth()-1)
 									line += ",";
 							}
-							if (y < image.getHeight()-1)
+							if (x < image.getHeight()-1)
 								line += "},";
 							text += line;
 						}

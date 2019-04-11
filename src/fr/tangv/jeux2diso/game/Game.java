@@ -22,7 +22,7 @@ public class Game extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		worldtest = new World(20, 10, 20, "World_Test");
+		worldtest = new World(20, 3, 20, "World_Test");
 		
 		Block block1 = new Block(null, Material.feriume_green, EtatBlock.normalblock);
 		Block block2 = new Block(null, Material.feriume_orange, EtatBlock.normalblock);
@@ -85,6 +85,7 @@ public class Game extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		worldtest.render(container, game, g);
 		g.fillRect(container.getWidth()/2-1, container.getHeight()/2-1, 2, 2);
+		
 		if(container.isShowingFPS()) {
 			g.resetFont();
 			Camera cam = worldtest.getCamera();

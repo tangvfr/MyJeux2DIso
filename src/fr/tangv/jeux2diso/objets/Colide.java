@@ -23,7 +23,7 @@ public class Colide {
 	}
 	
 	public Colide (float x, float y) {
-		setColide(x, y, 0, 0, ColideMask.rectangle);
+		setColide(x, y, 1, 1, ColideMask.rectangle);
 	}
 	
 	public float getMaxX() {
@@ -42,12 +42,24 @@ public class Colide {
 		return miny;
 	}
 	
+	public float getWidth() {
+		return maxx-minx;
+	}
+	
+	public float getHeight() {
+		return maxy-miny;
+	}
+	
 	public boolean colide(Colide colide) {
-		if (colide.getMaxX() < minx) return false;
-		if (colide.getMaxY() < miny) return false;
+		if (colide.getMaxX() <= minx) return false;
+		if (colide.getMaxY() <= miny) return false;
 		if (colide.getMinX() >= maxx) return false;
 		if (colide.getMinY() >= maxy) return false;
-		return colidemask.colide(this, colide);
+		return ColideMask.colide(this, colide);
+	}
+	
+	public ColideMask getColideMask() {
+		return colidemask;
 	}
 	
 }
