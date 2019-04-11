@@ -87,7 +87,7 @@ public class Game extends BasicGameState {
 		worldtest.render(container, game, g);
 		g.fillRect(container.getWidth()/2-1, container.getHeight()/2-1, 2, 2);
 		
-		if(container.isShowingFPS()) {
+		if(container.isShowingFPS() && ((App)game).devmode) {
 			g.resetFont();
 			g.setColor(Color.white);
 			Camera cam = worldtest.getCamera();

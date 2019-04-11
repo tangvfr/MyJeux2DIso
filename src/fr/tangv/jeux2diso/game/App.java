@@ -65,12 +65,12 @@ public class App extends StateBasedGame {
 	@Override
 	protected void postRenderState(GameContainer container, Graphics g) throws SlickException {
 		super.postRenderState(container, g);
-		if (devmode) {
+		/*if (devmode) {
 			g.resetFont();
 			g.setColor(Color.white);
-			g.drawString("DevMode", 930, 10);
-			ResourceAnim.devmode.draw(g, 980, 0);
-		}
+			g.drawString("DevMode", 925, 10);
+			ResourceAnim.devmode.draw(g, 990, 4);
+		}*/
 	}
 	
 	public void exit() {
