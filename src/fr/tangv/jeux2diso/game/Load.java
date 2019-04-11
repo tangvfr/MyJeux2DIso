@@ -41,7 +41,7 @@ public class Load extends BasicGameState{
 			loader.addLoading(ResourceImage.values());
 			loader.addLoading(ResourceFont.values());
 			loader.addLoading(Material.values());
-			loader.addLoading(Parametre.parametre);
+			loader.addLoading(Parametre.loading());
 			loader.addLoading(ResourceAnim.values());
 			loader.addLoading(ResourceLangue.values());
 			

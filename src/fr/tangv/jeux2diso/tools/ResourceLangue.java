@@ -45,8 +45,10 @@ public enum ResourceLangue implements Loading {
 	public void ini() {
 		if (path.equalsIgnoreCase("ini")) {
 			try {
+				YamlFile yfilelanguefr = new YamlFile(Main.replangue+"fr");
+				Main.saveDefaultYamlFile(yfilelanguefr, "res/langue/fr");
 				yfilelangue = new YamlFile(Main.replangue+Parametre.parametre.getLangue());
-				Main.saveDefaultYamlFile(yfilelangue, "res/langue/fr");
+				Main.saveDefaultYamlFile(yfilelangue, "res/langue/en");
 			} catch (InvalidConfigurationException | IOException e) {
 				e.printStackTrace();
 			}
