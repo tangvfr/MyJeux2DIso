@@ -28,7 +28,9 @@ public interface ColideMask {
 	public static ColideMask block = new ColideMask() {
 		@Override
 		public boolean colide(Colide my, Colide colide) {
-			//compareton des deux mask avec leu delage de coordonn�
+			my.get
+			//░▒▓
+			
 			return true;
 		}
 		
