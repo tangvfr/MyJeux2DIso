@@ -51,8 +51,8 @@ public interface EtatBlock {
 		public void render(GameContainer container, StateBasedGame game, Graphics g, Block block) {
 			if(block.getRender()) {
 				block.getMaterial().getResourceImage().draw(g, block.getXaf(), block.getYaf());
+				ResourceImage.selectblock.draw(g, block.getXaf(), block.getYaf());
 			}
-			ResourceImage.selectblock.draw(g, block.getXaf(), block.getYaf());
 		}
 	};
 	

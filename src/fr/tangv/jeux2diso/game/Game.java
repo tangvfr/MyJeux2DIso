@@ -8,6 +8,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.objets.Block;
+import fr.tangv.jeux2diso.objets.Camera;
 import fr.tangv.jeux2diso.objets.Colide;
 import fr.tangv.jeux2diso.objets.EtatBlock;
 import fr.tangv.jeux2diso.objets.Location;
@@ -30,7 +31,6 @@ public class Game extends BasicGameState {
 		FormBlockWorld.setCube(block1, new Location(8, 1, 1, worldtest), new Location(7, 2, 2, worldtest));
 		FormBlockWorld.setCubeArret(block2,  new Location(0, 1, 9, worldtest),  new Location(4, 1, 5, worldtest));
 		FormBlockWorld.setCube(block3, new Location(19, 0, 0, worldtest), new Location(0, 0, 19, worldtest));
-	
 	}
 	
 	private Block blockselect;
@@ -85,6 +85,11 @@ public class Game extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		worldtest.render(container, game, g);
 		g.fillRect(container.getWidth()/2-1, container.getHeight()/2-1, 2, 2);
+		if(container.isShowingFPS()) {
+			g.resetFont();
+			Camera cam = worldtest.getCamera();
+			g.drawString("Cam_w: "+cam.getWorld().getName()+"\nCam_x: "+cam.getX()+"\nCam_y: "+cam.getY()+"\nCam_z: "+cam.getZ(), 10, 30);
+		}
 	}
 
 	@Override

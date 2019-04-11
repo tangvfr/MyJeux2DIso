@@ -28,9 +28,9 @@ public interface ColideMask {
 		int maxy = (int) Math.max(my.getMaxY(), colide.getMaxY());
 		int minx = (int) Math.min(my.getMinX(), colide.getMinX());
 		int miny =  (int) Math.min(my.getMinY(), colide.getMinY());
-		/*int width = ;
-		int height = ;
-		boolean[][] talcomp = new boolean[][];*/
+		int width = maxx-minx;
+		int height = maxy-miny;
+		boolean[][] talcomp = new boolean[width][height];
 		
 		
 		//░▓█
