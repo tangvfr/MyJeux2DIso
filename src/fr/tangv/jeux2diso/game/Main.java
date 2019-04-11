@@ -18,7 +18,7 @@ public class Main {
 	public static final String rep = System.getenv("APPDATA")+"\\.Myjeuxtest\\";
 	public static String repparametre;
 	public static String replangue;
-	public static final String version = "bêta_1.1";
+	public static final String version = "bêta_1.2";
 	public static final String namegame = "Jeux Iso 2D Test";
 	
 	public static boolean saveDefaultYamlFile(YamlFile yfile, String ref) throws InvalidConfigurationException, IOException{

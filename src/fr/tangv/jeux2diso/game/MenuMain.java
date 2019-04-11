@@ -36,7 +36,7 @@ public class MenuMain extends BasicGameState {
 			}
 		});
 	}
-
+	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		buttonstartgame.update(container, game, delta);

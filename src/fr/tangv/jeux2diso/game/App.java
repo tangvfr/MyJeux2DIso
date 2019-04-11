@@ -6,6 +6,11 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.tools.Loading;
+import fr.tangv.jeux2diso.tools.Parametre;
+import fr.tangv.jeux2diso.tools.ResourceImage;
+import fr.tangv.jeux2diso.tools.ResourceLangue;
+
 public class App extends StateBasedGame {
 	
 	public static final int width = 1024;
@@ -26,6 +31,23 @@ public class App extends StateBasedGame {
 		super.keyPressed(key, c);
 		if (key == Input.KEY_F3) {
 			agc.setShowFPS(!agc.isShowingFPS());
+		} else if (key == Input.KEY_F1) {
+			if (Parametre.parametre.getLangue().equals("en")) {
+				Parametre.parametre.setLangue("fr");
+			} else {
+				Parametre.parametre.setLangue("en");
+			}
+			for (Loading load : ResourceLangue.values()) {
+				load.ini();
+			}
+			try {
+				int id = this.getCurrentStateID();
+				this.agc.reinit();
+				this.agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
+				this.enterState(id);
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

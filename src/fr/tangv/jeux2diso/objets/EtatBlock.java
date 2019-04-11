@@ -41,14 +41,10 @@ public interface EtatBlock {
 		
 		@Override
 		public void update(GameContainer container, StateBasedGame game, int delta, Block block) {
-			if (block.getMaterial().equals(Material.air)) {
-				block.setRender(false);
-			} else {
-				float[] coord = block.getWorld().getCoord(block.getLocation());
-				block.setXaf(coord[0]);
-				block.setYaf(coord[1]);
-				block.setRender(true);
-			}
+			float[] coord = block.getWorld().getCoord(block.getLocation());
+			block.setXaf(coord[0]);
+			block.setYaf(coord[1]);
+			block.setRender(true);
 		}
 		
 		@Override
