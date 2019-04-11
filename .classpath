@@ -11,5 +11,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MyJeux2DIso/native/windows"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/Simple-YAML-1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
