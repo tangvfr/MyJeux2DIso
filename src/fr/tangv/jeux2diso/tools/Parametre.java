@@ -80,16 +80,16 @@ public class Parametre {
 		}
 	}
 	
-	public int getForWard() {
-		if (verif("forward")) {
-			return yfile.getInt("forward");
+	public int getKeyForWard() {
+		if (verif("keyforward")) {
+			return yfile.getInt("keyforward");
 		} else {
 			return 0;
 		}
 	}
 	
-	public void setForWard(int key) {
-		yfile.set("forward", key);
+	public void setKeyForWard(int key) {
+		yfile.set("keyforward", key);
 		try {
 			yfile.save();
 		} catch (IOException e) {
@@ -97,4 +97,89 @@ public class Parametre {
 		}
 	}
 
+	public int getKeyBack() {
+		if (verif("keyback")) {
+			return yfile.getInt("keyback");
+		} else {
+			return 0;
+		}
+	}
+	
+	public void setKeyBack(int key) {
+		yfile.set("keyback", key);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getKeyLeft() {
+		if (verif("keyleft")) {
+			return yfile.getInt("keyleft");
+		} else {
+			return 0;
+		}
+	}
+	
+	public void setKeyLeft(int key) {
+		yfile.set("keyleft", key);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getKeyRight() {
+		if (verif("keyright")) {
+			return yfile.getInt("keyright");
+		} else {
+			return 0;
+		}
+	}
+	
+	public void setKeyRight(int key) {
+		yfile.set("keyright", key);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getKeyUp() {
+		if (verif("keyup")) {
+			return yfile.getInt("keyup");
+		} else {
+			return 0;
+		}
+	}
+	
+	public void setKeyUp(int key) {
+		yfile.set("keyup", key);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getKeyDown() {
+		if (verif("keydown")) {
+			return yfile.getInt("keydown");
+		} else {
+			return 0;
+		}
+	}
+	
+	public void setKeyDown(int key) {
+		yfile.set("keydown", key);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
