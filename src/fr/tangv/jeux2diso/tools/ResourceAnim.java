@@ -11,7 +11,7 @@ import org.simpleyaml.configuration.file.YamlConfiguration;
 public enum ResourceAnim implements Loading {
 	
 	air("air"),
-	test("test");
+	devmode("devmode");
 	
 	private Animation anim;
 	private String ref;

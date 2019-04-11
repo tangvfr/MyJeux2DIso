@@ -74,6 +74,7 @@ public class Load extends BasicGameState{
 			container.sleep(500);
 			((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
 			((App)game).changeState(StateId.menumain);
+			((App)game).load = true;
 		}
 	}
 	

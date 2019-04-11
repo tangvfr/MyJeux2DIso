@@ -9,7 +9,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.objets.Button;
 import fr.tangv.jeux2diso.objets.ButtonAction;
-import fr.tangv.jeux2diso.tools.ResourceAnim;
 import fr.tangv.jeux2diso.tools.ResourceFont;
 import fr.tangv.jeux2diso.tools.ResourceImage;
 import fr.tangv.jeux2diso.tools.ResourceLangue;
@@ -48,7 +47,6 @@ public class MenuMain extends BasicGameState {
 		ResourceImage.menumainbackground.draw(g, 0, 0);
 		buttonstartgame.render(container, game, g);
 		buttonexit.render(container, game, g);
-		ResourceAnim.test.draw(g, 0, 0);
 	}
 
 	@Override

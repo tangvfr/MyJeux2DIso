@@ -1,5 +1,6 @@
 package fr.tangv.jeux2diso.game;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -88,6 +89,7 @@ public class Game extends BasicGameState {
 		
 		if(container.isShowingFPS()) {
 			g.resetFont();
+			g.setColor(Color.white);
 			Camera cam = worldtest.getCamera();
 			g.drawString("Cam_w: "+cam.getWorld().getName()+"\nCam_x: "+cam.getX()+"\nCam_y: "+cam.getY()+"\nCam_z: "+cam.getZ(), 10, 30);
 		}
