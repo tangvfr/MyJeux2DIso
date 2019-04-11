@@ -51,10 +51,9 @@ public class App extends StateBasedGame {
 					load.ini();
 				}
 				try {
-					int id = this.getCurrentStateID();
-					this.agc.reinit();
-					this.agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
-					this.enterState(id);
+					agc.reinit();
+					agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
+					changeState(StateId.menumain);
 				} catch (SlickException e) {
 					e.printStackTrace();
 				}
@@ -65,12 +64,12 @@ public class App extends StateBasedGame {
 	@Override
 	protected void postRenderState(GameContainer container, Graphics g) throws SlickException {
 		super.postRenderState(container, g);
-		/*if (devmode) {
+		if (devmode) {
 			g.resetFont();
 			g.setColor(Color.white);
 			g.drawString("DevMode", 925, 10);
 			ResourceAnim.devmode.draw(g, 990, 4);
-		}*/
+		}
 	}
 	
 	public void exit() {
