@@ -13,8 +13,8 @@ public class App extends StateBasedGame {
 	
 	public AppGameContainer agc;
 	
-	public App() throws SlickException {
-		super("Jeux Iso 2D Test");
+	public App(String name) throws SlickException {
+		super(name);
 		agc = new AppGameContainer(this);
 		agc.setDisplayMode(width, height, false);
 		agc.setShowFPS(false);

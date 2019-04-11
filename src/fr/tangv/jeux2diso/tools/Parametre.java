@@ -1,37 +1,70 @@
 package fr.tangv.jeux2diso.tools;
-
 import java.io.IOException;
-import java.util.Map;
 
-import org.newdawn.slick.util.ResourceLoader;
 import org.simpleyaml.configuration.file.YamlFile;
-import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 import org.simpleyaml.exceptions.InvalidConfigurationException;
 
 import fr.tangv.jeux2diso.game.Main;
 
-public class Parametre implements Loading, ConfigurationSerializable {
+public class Parametre implements Loading {
 	
 	public static final Parametre parametre = new Parametre();
 	
-	private YamlFile yfile = new YamlFile(Main.repparametre);
+	private static final YamlFile yfile = new YamlFile(Main.repparametre);
 	
-	@Override
-	public Map<String, Object> serialize() {
-		
-		return null;
+	private boolean verif(String string) {
+		if (yfile.contains(string)) {
+			return true;
+		} else {
+			try {
+				yfile.set(string, "---");
+				yfile.save();
+				Main.sendConsol("Paramtre dont exists "+string);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+	}
+	
+	public String getLangue() {
+		if (verif("langue")) {
+			return yfile.getString("langue");
+		} else {
+			return null;
+		}
+	}
+	
+	public void setLangue(String langue) {
+		yfile.set("langue", langue);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getForWard() {
+		if (verif("forward")) {
+			return yfile.getInt("forward");
+		} else {
+			return 0;
+		}
+	}
+	
+	public void setForWard(int key) {
+		yfile.set("forward", key);
+		try {
+			yfile.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void ini() {
 		try {
-			if (yfile.exists()) {
-				yfile.load();
-			} else {
-				yfile.load(ResourceLoader.getResourceAsStream("res/para/para"));
-				yfile.createNewFile(true);
-			}
+			Main.saveDefaultYamlFile(yfile, "res/para/para");
 		} catch (InvalidConfigurationException | IOException e) {
 			e.printStackTrace();
 		}
