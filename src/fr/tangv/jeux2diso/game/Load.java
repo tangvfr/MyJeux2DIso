@@ -35,7 +35,7 @@ public class Load extends BasicGameState{
 		if (Main.first == 0) {
 			imageloadbackground = new Image("res/image/gui/load/background.png");
 			imageloadcursor = new Image("res/image/gui/load/cursor.png");
-			((App)game).agc.setMouseCursor(imageloadcursor, 0, 0);
+			((App)game).setCursor(imageloadcursor, 0, 0);
 			
 			loader = new Loader();
 			loader.addLoading(ResourceImage.values());
@@ -72,7 +72,7 @@ public class Load extends BasicGameState{
 		} else if(!loader.next()) {
 			((App)game).agc.reinit();
 			container.sleep(500);
-			((App)game).agc.setMouseCursor(ResourceImage.cursor.getImage(), 0, 0);
+			((App)game).setCursor(ResourceImage.cursor.getImage(), 0, 0);
 			((App)game).changeState(StateId.menumain);
 			((App)game).load = true;
 		}
