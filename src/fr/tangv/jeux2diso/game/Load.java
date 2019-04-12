@@ -88,28 +88,34 @@ public class Load extends BasicGameState{
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		imageloadbackground.draw(0, 0);
 		
-		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 208, Color.darkGray);
-		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 198, Color.gray);
-		drawEvolution(g, (container.getWidth()/2), (container.getHeight()/2), 200, loader.getCursor(), loader.getMax(), Color.decode("0x0094c7"));
-		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 190, Color.darkGray);
-		fillCercle(g ,(container.getWidth()/2), (container.getHeight()/2), 180, Color.decode("0x909090"));
-		
+		int rayonmax = 124;
+		int rayonmin = 114;
+		double cof = 1/0.0006;
+		double part = (Math.PI*2)/cof;
+		int dx = container.getWidth()/2;
+		int dy = container.getHeight()/2;
+		int dix = imageloadneon.getWidth()/2;
+		int diy = imageloadneon.getHeight()/2;
+		double max = cof*(loader.getCursor()/(double)loader.getMax());
+		for (int i = 0; i < max; i++) {
+			double cx = Math.cos(part*(i-cof/4.0));
+			double cy = Math.sin(part*(i-cof/4.0));
+			for (int rayon = rayonmin; rayon < rayonmax; rayon++) {
+				int x = ((int)(cx*rayon))+dx;
+				int y = ((int)(cy*rayon))+dy;
+				int ix = ((int)(cx*rayon))+dix;
+				int iy = ((int)(cy*rayon))+diy;
+				Color color = imageloadneon.getColor(ix, iy);
+				g.setColor(color);
+				g.drawLine(x, y, x, y);
+			}
+		}
 		if(font != null) {
 			g.setColor(Color.black);
 			g.setFont(font);
 			String text = ((int)((loader.getCursor())/(double)loader.getMax()*1000)/10.)+"%";
 			g.drawString(text, (container.getWidth()/2)-(g.getFont().getWidth(text)/2), (container.getHeight()/2)-(g.getFont().getHeight(text)/2));
 		}
-	}
-	
-	private void fillCercle(Graphics g ,int x, int y, int diametre, Color color) {
-		g.setColor(color);
-		g.fillOval(x-diametre/2, y-diametre/2, diametre, diametre);
-	}
-	
-	private void drawEvolution(Graphics g,int x, int y,int diametre, int value, int max, Color color) {
-		g.setColor(color);
-		g.fillArc(x-diametre/2,y-diametre/2, diametre, diametre, -90, (float)(value/(double)max*360)-90);
 	}
 
 	@Override
