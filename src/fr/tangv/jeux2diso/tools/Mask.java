@@ -1,7 +1,36 @@
 package fr.tangv.jeux2diso.tools;
 
-public class Mask {
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Image;
 
+public enum Mask implements Loading {
+	
+	cursortest(ResourceImage.cursor);
+	
+	private boolean[][] mask;
+	private ResourceImage resourceimage;
+	
+	private Mask(ResourceImage resourceimage) {
+		this.resourceimage = resourceimage;
+	}
+	
+	@Override
+	public void ini() {
+		Image image = resourceimage.getImage();
+		mask = new boolean[image.getWidth()][image.getHeight()];
+		for (int y = 0; y < image.getHeight(); y++) for (int x = 0; x < image.getWidth(); x++) {
+			Color color = image.getColor(x, y);
+			if (color.getAlpha() == 255)
+				mask[x][y] = true;
+			else
+				mask[x][y] = false;
+		}
+	}
+	
+	public boolean[][] getMask() {
+		return mask;
+	}
+	
 	public static boolean[][] maskblockfull = new boolean[][] {
 		{false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false},
 		{false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false},

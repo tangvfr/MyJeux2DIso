@@ -15,7 +15,7 @@ public class Main {
 	
 	//comencé le 08/04/2019
 	public static byte first = 0;
-	public static String rep = System.getenv("APPDATA")+"\\";
+	public static String rep = System.getenv("APPDATA")+"/";
 	public static String repparametre;
 	public static String replangue;
 	public static final String version = "bêta_1.2";
@@ -63,7 +63,7 @@ public class Main {
 	
 	public static void main(String args[]) {
 		if(args.length >= 1) {
-			rep += args[0]+'\\';
+			rep += args[0]+'/';
 			if(args.length >= 2 && args[1].equalsIgnoreCase("-low"))
 				low = true;
 			try {
@@ -72,8 +72,8 @@ public class Main {
 				sendConsol("Name: "+namegame);
 				sendConsol("Version: "+version);
 				sendConsol("Reptoire: "+rep);
-				repparametre = rep+"\\para-"+version;
-				replangue = rep+"\\langue-"+version+'-';
+				repparametre = rep+"/para-"+version;
+				replangue = rep+"/langue-"+version+'-';
 				new App(namegame+' '+version);
 			} catch (SlickException e) {
 				e.printStackTrace();

@@ -18,6 +18,7 @@ import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.main.Main;
 import fr.tangv.jeux2diso.tools.Loader;
 import fr.tangv.jeux2diso.tools.Loading;
+import fr.tangv.jeux2diso.tools.Mask;
 import fr.tangv.jeux2diso.tools.Material;
 import fr.tangv.jeux2diso.tools.Parametre;
 import fr.tangv.jeux2diso.tools.ResourceAnim;
@@ -28,6 +29,7 @@ import fr.tangv.jeux2diso.tools.ResourceLangue;
 public class Load extends BasicGameState{
 	
 	private Image imageloadbackground;
+	private Image imageloadneon;
 	private Image imageloadcursor;
 	private Loader loader;
 	private TrueTypeFont font;
@@ -36,6 +38,7 @@ public class Load extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		if (Main.first == 0) {
 			imageloadbackground = new Image("res/image/gui/load/background.png");
+			imageloadneon = new Image("res/image/gui/load/neon.png");
 			imageloadcursor = new Image("res/image/gui/load/cursor.png");
 			((App)game).setCursor(imageloadcursor, 0, 0);
 			
@@ -46,6 +49,7 @@ public class Load extends BasicGameState{
 			loader.addLoading(Parametre.loading());
 			loader.addLoading(ResourceAnim.values());
 			loader.addLoading(ResourceLangue.values());
+			loader.addLoading(Mask.values());
 			
 			loader.addLoading(new Loading() {@Override public void ini() {
 				game.addState(new MenuMain());
