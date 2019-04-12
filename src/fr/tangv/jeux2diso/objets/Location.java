@@ -2,10 +2,10 @@ package fr.tangv.jeux2diso.objets;
 
 public class Location {
 
-	private int x;
-	private int y;
-	private int z;
-	private World world;
+	protected int x;
+	protected int y;
+	protected int z;
+	protected World world;
 	
 	public Location(int x, int y, int z, World world) {
 		this.x = x;

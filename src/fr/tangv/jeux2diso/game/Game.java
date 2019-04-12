@@ -44,7 +44,7 @@ public class Game extends BasicGameState {
 			((App)game).changeState(StateId.menumain);
 		}
 		
-		double cof = 0.5f;
+		float cof = 0.5f;
 		if (input.isKeyPressed(Input.KEY_UP)) {
 			worldtest.getCamera().addZ(cof);
 		}

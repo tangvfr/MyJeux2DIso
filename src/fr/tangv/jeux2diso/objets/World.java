@@ -23,7 +23,7 @@ public class World {
 		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++) {
 			setBlock(Block.nullblock, new Location(x, y, z, this));
 		}
-		camera = new Camera(0.0, 0.0, 0.0, this);
+		camera = new Camera(0.0f, 0.0f, 0.0f, this);
 		this.name = name;
 	}
 	
