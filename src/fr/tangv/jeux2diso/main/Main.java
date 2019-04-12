@@ -15,16 +15,13 @@ public class Main {
 	
 	//comencé le 08/04/2019
 	public static byte first = 0;
-	public static final String rep = System.getenv("APPDATA")+"\\.Myjeuxtest\\";
+	public static String rep = System.getenv("APPDATA")+"\\";
 	public static String repparametre;
 	public static String replangue;
 	public static final String version = "bêta_1.2";
 	public static final String namegame = "Jeux Iso 2D Test";
 	
-	private static boolean low = getLow();
-	public static boolean getLow() {
-		return low;
-	}
+	public static boolean low;
 	
 	public static boolean saveDefaultYamlFile(YamlFile yfile, String ref) throws InvalidConfigurationException, IOException{
 		if (yfile.exists()) {
@@ -65,19 +62,22 @@ public class Main {
 	}
 	
 	public static void main(String args[]) {
-		if(args.length >= 1 && args[0].equalsIgnoreCase("-low"))
-			low = true;
-		try {
-			System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL",""+low);
-			sendConsol("Low: "+low);
-			sendConsol("Name: "+namegame);
-			sendConsol("Version: "+version);
-			sendConsol("Reptoire: "+rep);
-			repparametre = rep+"\\para-"+version;
-			replangue = rep+"\\langue-"+version+'-';
-			new App(namegame+' '+version);
-		} catch (SlickException e) {
-			e.printStackTrace();
+		if(args.length >= 1) {
+			rep += args[0]+'\\';
+			if(args.length >= 2 && args[1].equalsIgnoreCase("-low"))
+				low = true;
+			try {
+				System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL",""+low);
+				sendConsol("Low: "+low);
+				sendConsol("Name: "+namegame);
+				sendConsol("Version: "+version);
+				sendConsol("Reptoire: "+rep);
+				repparametre = rep+"\\para-"+version;
+				replangue = rep+"\\langue-"+version+'-';
+				new App(namegame+' '+version);
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
