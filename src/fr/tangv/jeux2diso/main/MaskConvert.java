@@ -1,4 +1,4 @@
-package fr.tangv.jeux2diso.game;
+package fr.tangv.jeux2diso.main;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

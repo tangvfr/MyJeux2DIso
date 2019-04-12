@@ -1,4 +1,4 @@
-package fr.tangv.jeux2diso.game;
+package fr.tangv.jeux2diso.main;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,7 +63,6 @@ public class Main {
 	public static void main(String args[]) {
 		if (args.length >= 1 && args[0].equalsIgnoreCase("-low"))
 			low = true;
-		//-Dorg.lwjgl.opengl.Display.allowSoftwareOpenGL=true
 		try {
 			sendConsol("Low: "+low);
 			sendConsol("Name: "+namegame);

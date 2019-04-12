@@ -4,7 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.tangv.jeux2diso.game.App;
+import fr.tangv.jeux2diso.main.App;
 
 public class World {
 	

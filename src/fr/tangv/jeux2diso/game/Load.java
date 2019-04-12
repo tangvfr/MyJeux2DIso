@@ -14,6 +14,8 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.ResourceLoader;
 
+import fr.tangv.jeux2diso.main.App;
+import fr.tangv.jeux2diso.main.Main;
 import fr.tangv.jeux2diso.tools.Loader;
 import fr.tangv.jeux2diso.tools.Loading;
 import fr.tangv.jeux2diso.tools.Material;

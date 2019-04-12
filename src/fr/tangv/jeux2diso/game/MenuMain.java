@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Button;
 import fr.tangv.jeux2diso.objets.ButtonAction;
 import fr.tangv.jeux2diso.tools.ResourceFont;

@@ -1,4 +1,4 @@
-package fr.tangv.jeux2diso.game;
+package fr.tangv.jeux2diso.main;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
@@ -9,6 +9,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.game.Load;
+import fr.tangv.jeux2diso.game.StateId;
 import fr.tangv.jeux2diso.tools.Loading;
 import fr.tangv.jeux2diso.tools.Parametre;
 import fr.tangv.jeux2diso.tools.ResourceAnim;

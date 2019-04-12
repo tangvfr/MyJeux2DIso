@@ -1,4 +1,4 @@
-package fr.tangv.jeux2diso.game;
+package fr.tangv.jeux2diso.main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

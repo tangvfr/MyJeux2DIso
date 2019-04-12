@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Block;
 import fr.tangv.jeux2diso.objets.Camera;
 import fr.tangv.jeux2diso.objets.Colide;

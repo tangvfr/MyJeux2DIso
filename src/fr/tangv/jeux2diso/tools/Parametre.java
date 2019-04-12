@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.simpleyaml.configuration.file.YamlFile;
 import org.simpleyaml.exceptions.InvalidConfigurationException;
 
-import fr.tangv.jeux2diso.game.Main;
+import fr.tangv.jeux2diso.main.Main;
 
 public class Parametre {
 	
