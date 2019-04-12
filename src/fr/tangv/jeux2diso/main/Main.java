@@ -20,7 +20,11 @@ public class Main {
 	public static String replangue;
 	public static final String version = "bêta_1.2";
 	public static final String namegame = "Jeux Iso 2D Test";
-	public static boolean low = false;
+	
+	private static boolean low = getLow();
+	public static boolean getLow() {
+		return low;
+	}
 	
 	public static boolean saveDefaultYamlFile(YamlFile yfile, String ref) throws InvalidConfigurationException, IOException{
 		if (yfile.exists()) {
@@ -61,9 +65,10 @@ public class Main {
 	}
 	
 	public static void main(String args[]) {
-		if (args.length >= 1 && args[0].equalsIgnoreCase("-low"))
+		if(args.length >= 1 && args[0].equalsIgnoreCase("-low"))
 			low = true;
 		try {
+			System.setProperty("org.lwjgl.opengl.Display.allowSoftwareOpenGL",""+low);
 			sendConsol("Low: "+low);
 			sendConsol("Name: "+namegame);
 			sendConsol("Version: "+version);

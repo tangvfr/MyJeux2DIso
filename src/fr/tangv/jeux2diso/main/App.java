@@ -35,7 +35,7 @@ public class App extends StateBasedGame {
 	}
 	
 	public void setCursor(Image img, int x, int y) throws SlickException {
-		if(!Main.low)
+		if(!Main.getLow())
 		  agc.setMouseCursor(img, x, y);
 	}
 	
