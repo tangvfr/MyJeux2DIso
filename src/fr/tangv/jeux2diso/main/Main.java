@@ -73,7 +73,7 @@ public class Main {
 				sendConsol("Version: "+version);
 				sendConsol("Reptoire: "+rep);
 				repparametre = rep+"/para-"+version;
-				replangue = rep+"/langue-"+version+'-';
+				replangue = rep+"/langue/langue-"+version+'-';
 				new App(namegame+' '+version);
 			} catch (SlickException e) {
 				e.printStackTrace();
