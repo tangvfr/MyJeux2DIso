@@ -31,6 +31,7 @@ public class App extends StateBasedGame {
 		agc = new AppGameContainer(this);
 		agc.setDisplayMode(width, height, false);
 		agc.setShowFPS(false);
+		agc.setIcon("res/image/ico.png");
 		agc.start();
 	}
 	
