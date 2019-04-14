@@ -71,7 +71,7 @@ public class Main {
 				sendConsol("Low: "+low);
 				sendConsol("Name: "+namegame);
 				sendConsol("Version: "+version);
-				sendConsol("Reptoire: "+rep);
+				sendConsol("Rep: "+rep);
 				repparametre = rep+"/para-"+version;
 				replangue = rep+"/langue/langue-"+version+'-';
 				new App(namegame+' '+version);
