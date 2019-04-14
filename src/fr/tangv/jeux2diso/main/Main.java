@@ -19,7 +19,7 @@ public class Main {
 	public static String repparametre;
 	public static String replangue;
 	public static final String version = "alpha_1.1";
-	public static final String namegame = "Jeux Iso 2D Test";
+	public static final String namegame = "Numiota";
 	
 	public static boolean low;
 	
