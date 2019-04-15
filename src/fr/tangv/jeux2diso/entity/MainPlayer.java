@@ -32,15 +32,15 @@ public class MainPlayer extends Player {
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyBack())) {
 			getLocation().addZ(-cof);
-			setDirection(Direction.west);
+			setDirection(Direction.east);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyLeft())) {
 			getLocation().addX(-cof);
-			setDirection(Direction.west);
+			setDirection(Direction.south);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyRight())) {
 			getLocation().addX(cof);
-			setDirection(Direction.west);
+			setDirection(Direction.north);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyDown())) {
 			getLocation().addY(cof);
