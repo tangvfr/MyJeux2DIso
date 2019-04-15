@@ -1,2 +1,7 @@
 langue: "en"
-forward: "Forward"
+keyback: 208
+keydown: 209
+keyforward: 200
+keyleft: 203
+keyup: 201
+keyright: 205

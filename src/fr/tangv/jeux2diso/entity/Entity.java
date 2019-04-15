@@ -65,10 +65,6 @@ public abstract class Entity {
 		return location.getWorld();
 	}
 	
-	public Direction setDirection() {
-		return direction;
-	}
-	
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}

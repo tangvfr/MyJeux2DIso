@@ -13,10 +13,10 @@ import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public class Player extends Entity {
 
-	private SpriteSheet spsh;
-	private int width = 50;
-	private int height = 50;
-	private String name;
+	protected SpriteSheet spsh;
+	protected int width = 50;
+	protected int height = 50;
+	protected String name;
 	
 	public void setCoord() {
 		int mxs = App.width/2-25;

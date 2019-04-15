@@ -8,23 +8,25 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.entity.Entity;
 import fr.tangv.jeux2diso.entity.EntityLocation;
-import fr.tangv.jeux2diso.entity.Player;
+import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.main.App;
-import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public class World {
 	
 	private Block[][][] world;
-	private EntityLocation camera;
 	private int maxx;
 	private int maxy;
 	private int maxz;
 	private String name;
-	private ArrayList<Entity> entitymap = new ArrayList<Entity>();
-	protected ArrayList<Block> blockrender = new ArrayList<Block>();
-	private Player mainplayer;
+	public ArrayList<Entity> entitymap = new ArrayList<Entity>();
+	public ArrayList<Block> blockrender = new ArrayList<Block>();
+	private MainPlayer mainplayer;
 	
-	public World(int maxx, int maxy, int maxz, String name) {
+	public MainPlayer getMainPlayer() {
+		return mainplayer;
+	}
+	
+	public World(int maxx, int maxy, int maxz, String name, MainPlayer mainplayer) {
 		world = new Block[maxx][maxy][maxz];
 		this.maxx = maxx;
 		this.maxy = maxy;
@@ -32,9 +34,9 @@ public class World {
 		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++) {
 			setBlock(Block.nullblock, new Location(x, y, z, this));
 		}
-		camera = new EntityLocation(0.0f, 0.0f, 0.0f, this);
 		this.name = name;
-		mainplayer = new Player(camera, Direction.south, "", ResourceImage.playermainsheet);
+		mainplayer.setLocation(new EntityLocation(0.0f, 0.0f, 0.0f, this));
+		this.mainplayer = mainplayer;
 	}
 	
 	public void setBlock(Block bblock, Location location) {
@@ -75,30 +77,33 @@ public class World {
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {
-		blockrender.clear();
-		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++) {
-			world[x][y][z].update(container, game, delta);
-		}
-		
-		for (Entity entity : entitymap) {
-			entity.update(container, game, delta);
-		}
+		//main player
 		mainplayer.update(container, game, delta);
+		//reset block render
+		blockrender.clear();
+		//add block render in screen
+		
+		//block go render
+		for (Block block : blockrender)
+			block.update(container, game, delta);
+		//all entity
+		for (Entity entity : entitymap)
+			entity.update(container, game, delta);
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
-		for (Block block : blockrender) {
-			block.render(container, game, g);
-		}
-		
-		for (Entity entity : entitymap) {
-			entity.render(container, game, g);
-		}
+		//main player
 		mainplayer.render(container, game, g);
+		//block go render
+		for (Block block : blockrender)
+			block.render(container, game, g);
+		//all entity
+		for (Entity entity : entitymap)
+			entity.render(container, game, g);
 	}
 	
 	public EntityLocation getCamera() {
-		return camera;
+		return mainplayer.getLocation();
 	}
 	
 	public String getName() {

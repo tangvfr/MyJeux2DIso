@@ -9,14 +9,17 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import fr.tangv.jeux2diso.entity.EntityLocation;
+import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Block;
 import fr.tangv.jeux2diso.objets.Colide;
+import fr.tangv.jeux2diso.objets.Direction;
 import fr.tangv.jeux2diso.objets.EtatBlock;
 import fr.tangv.jeux2diso.objets.Location;
 import fr.tangv.jeux2diso.objets.World;
 import fr.tangv.jeux2diso.tools.FormBlockWorld;
 import fr.tangv.jeux2diso.tools.Material;
+import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public class Game extends BasicGameState {
 
@@ -24,7 +27,7 @@ public class Game extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		worldtest = new World(20, 3, 20, "World_Test");
+		worldtest = new World(20, 3, 20, "World_Test", new MainPlayer(null, Direction.south, "", ResourceImage.playermainsheet));
 		
 		Block block1 = new Block(null, Material.feriume_green, EtatBlock.normalblock);
 		Block block2 = new Block(null, Material.feriume_orange, EtatBlock.normalblock);
@@ -41,30 +44,9 @@ public class Game extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		Input input = container.getInput();
-		if (input.isKeyDown(Input.KEY_ESCAPE)) {
+		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			((App)game).changeState(StateId.menumain);
 		}
-		
-		float cof = 0.5f;
-		if (input.isKeyPressed(Input.KEY_UP)) {
-			worldtest.getCamera().addZ(cof);
-		}
-		if (input.isKeyPressed(Input.KEY_DOWN)) {
-			worldtest.getCamera().addZ(-cof);
-		}
-		if (input.isKeyPressed(Input.KEY_LEFT)) {
-			worldtest.getCamera().addX(-cof);
-		}
-		if (input.isKeyPressed(Input.KEY_RIGHT)) {
-			worldtest.getCamera().addX(cof);
-		}
-		if (input.isKeyPressed(Input.KEY_NEXT)) {
-			worldtest.getCamera().addY(cof);
-		}
-		if (input.isKeyPressed(Input.KEY_PRIOR)) {
-			worldtest.getCamera().addY(-cof);
-		}
-		
 		if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			Colide mouse = new Colide(input.getMouseX(), input.getMouseY());
 			Block block = worldtest.getBlock(mouse);
