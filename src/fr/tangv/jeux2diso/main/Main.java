@@ -18,7 +18,7 @@ public class Main {
 	public static String rep = System.getenv("APPDATA")+"/";
 	public static String repparametre;
 	public static String replangue;
-	public static final String version = "alpha_1.1";
+	public static final String version = "alpha_1.2";
 	public static final String namegame = "Numiota";
 	
 	public static boolean low;
