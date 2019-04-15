@@ -23,6 +23,13 @@ public interface ColideMask {
 		}
 	};
 	
+	public static ColideMask player = new ColideMask() {
+		@Override
+		public boolean[][] getMask(int width, int height) {
+			return Mask.maskblockfull;
+		}
+	};
+	
 	public static boolean colide(Colide my, Colide colide) {
 		int minx = (int) Math.min(my.getMinX(), colide.getMinX());
 		int miny =  (int) Math.min(my.getMinY(), colide.getMinY());

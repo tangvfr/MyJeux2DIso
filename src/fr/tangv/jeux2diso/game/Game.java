@@ -8,9 +8,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.entity.EntityLocation;
 import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Block;
-import fr.tangv.jeux2diso.objets.Camera;
 import fr.tangv.jeux2diso.objets.Colide;
 import fr.tangv.jeux2diso.objets.EtatBlock;
 import fr.tangv.jeux2diso.objets.Location;
@@ -91,7 +91,7 @@ public class Game extends BasicGameState {
 		if(container.isShowingFPS() && ((App)game).devmode) {
 			g.resetFont();
 			g.setColor(Color.white);
-			Camera cam = worldtest.getCamera();
+			EntityLocation cam = worldtest.getCamera();
 			g.drawString("Cam_w: "+cam.getWorld().getName()+"\nCam_x: "+cam.getX()+"\nCam_y: "+cam.getY()+"\nCam_z: "+cam.getZ(), 10, 30);
 		}
 	}

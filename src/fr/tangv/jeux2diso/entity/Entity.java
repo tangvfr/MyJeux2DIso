@@ -4,14 +4,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.objets.Direction;
 import fr.tangv.jeux2diso.objets.World;
 
 public abstract class Entity {
 		
-	private EntityLocation location;
-	private boolean render;
-	private float xaf;
-	private float yaf;
+	protected EntityLocation location;
+	protected Direction direction;
+	protected boolean render;
+	protected float xaf;
+	protected float yaf;
 	
 	public void setXaf(float xaf) {
 		this.xaf= xaf;
@@ -29,8 +31,9 @@ public abstract class Entity {
 		return yaf;
 	}
 	
-	public Entity(EntityLocation location) {
+	public Entity(EntityLocation location, Direction direction) {
 		this.location = location;
+		this.direction = direction;
 		this.render = false;
 	}
 	
@@ -60,6 +63,14 @@ public abstract class Entity {
 	
 	public World getWorld() {
 		return location.getWorld();
+	}
+	
+	public Direction setDirection() {
+		return direction;
+	}
+	
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 	
 	public boolean getRender() {

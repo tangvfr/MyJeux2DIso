@@ -7,6 +7,10 @@ public class Location {
 	protected int z;
 	protected World world;
 	
+	public Location convertEntityLocation() {
+		return new Location(x, y, z, world);
+	}
+	
 	public Location(int x, int y, int z, World world) {
 		this.x = x;
 		this.y = y;

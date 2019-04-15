@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 public enum ResourceImage implements Loading {
 	
 	air("air"),
+	playermainsheet("entity/playermain.png"),
 	selectblock("block/select.png"),
 	feriumegreen("block/feriume_green.png"),
 	feriumeorange("block/feriume_orange.png"),
