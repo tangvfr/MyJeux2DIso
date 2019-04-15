@@ -4,10 +4,18 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
 
+import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.tools.Material;
 import fr.tangv.jeux2diso.tools.ResourceImage;
 
 public interface EtatBlock {
+	
+	public static boolean inScreen(Block block) {
+		if (block.getXaf() > -50 && App.width+50 > block.getXaf() && block.getYaf() > -50 && App.height+50 > block.getYaf())
+			return true;
+		else
+			return false;
+	}
 	
 	public static EtatBlock nulletat = new EtatBlock() {
 		@Override public void update(GameContainer container, StateBasedGame game, int delta, Block block) {}
@@ -24,7 +32,7 @@ public interface EtatBlock {
 				float[] coord = block.getWorld().getCoord(block.getLocation());
 				block.setXaf(coord[0]);
 				block.setYaf(coord[1]);
-				block.setRender(true);
+				block.setRender(inScreen(block));
 			}
 		}
 		
@@ -44,7 +52,7 @@ public interface EtatBlock {
 			float[] coord = block.getWorld().getCoord(block.getLocation());
 			block.setXaf(coord[0]);
 			block.setYaf(coord[1]);
-			block.setRender(true);
+			block.setRender(inScreen(block));
 		}
 		
 		@Override

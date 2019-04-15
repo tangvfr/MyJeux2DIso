@@ -19,7 +19,6 @@ public class World {
 	private int maxz;
 	private String name;
 	public ArrayList<Entity> entitymap = new ArrayList<Entity>();
-	public ArrayList<Block> blockrender = new ArrayList<Block>();
 	private MainPlayer mainplayer;
 	
 	public MainPlayer getMainPlayer() {
@@ -65,7 +64,8 @@ public class World {
 	}
 	
 	public Block getBlock(Colide colide) {
-		for (Block block : blockrender) {
+		for (int y = maxy-1; y >= 0; y--) for (int z = maxz-1; z >=0 ; z--) for (int x = maxx-1; x >= 0; x--) {
+			Block block = getBlock(x, y ,z);
 			if (block.getRender()) {
 				Colide colideblock = new Colide(block.getXaf(), block.getYaf(), 50, 50, ColideMask.block);
 				if (colide.colide(colideblock)) {
@@ -79,27 +79,23 @@ public class World {
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		//main player
 		mainplayer.update(container, game, delta);
-		//reset block render
-		blockrender.clear();
-		//add block render in screen
-		
 		//block go render
-		for (Block block : blockrender)
-			block.update(container, game, delta);
+		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++)
+			getBlock(x, y ,z).update(container, game, delta);
 		//all entity
 		for (Entity entity : entitymap)
 			entity.update(container, game, delta);
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
-		//main player
-		mainplayer.render(container, game, g);
 		//block go render
-		for (Block block : blockrender)
-			block.render(container, game, g);
+		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++)
+			getBlock(x, y ,z).render(container, game, g);
 		//all entity
 		for (Entity entity : entitymap)
 			entity.render(container, game, g);
+		//main player
+		mainplayer.render(container, game, g);
 	}
 	
 	public EntityLocation getCamera() {
