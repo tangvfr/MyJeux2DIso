@@ -33,13 +33,13 @@ public class MainPlayer extends Player {
 	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) {
-		if (gamemode.update(container, game, delta))
+		if (gamemode.update(container, game, delta, this))
 			super.update(container, game, delta);
 	}
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
-		if (gamemode.render(container, game, g))
+		if (gamemode.render(container, game, g, this))
 			super.render(container, game, g);
 	}
 	
