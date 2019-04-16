@@ -45,24 +45,27 @@ public class World {
 	}
 	
 	public Block getBlock(int x, int y, int z) {
-		return world[x][y][z];
+		if (x >= 0 && x < maxx && y >= 0 && y < maxy && z >= 0 && z < maxz)
+			return world[x][y][z];
+		else
+			return null;
 	}
 	
 	public Block getBlock(Location location) {
-		return world[location.getX()][location.getY()][location.getZ()];
+		return getBlock(location.getX(), location.getY(), location.getZ());
 	}
 	
-	public float[] getCoord(Location location) {
-		return getCoord(location.getX(), location.getY(), location.getZ());
+	public float[] getCoord(Location location, int decalx, int decaly) {
+		return getCoord(location.getX(), location.getY(), location.getZ(), decalx, decaly);
 	}
 	
-	public float[] getCoord(EntityLocation location) {
-		return getCoord(location.getX(), location.getY(), location.getZ());
+	public float[] getCoord(EntityLocation location, int decalx, int decaly) {
+		return getCoord(location.getX(), location.getY(), location.getZ(), decalx, decaly);
 	}
 	
-	public float[] getCoord(float locx, float locy, float locz) {
-		int mxs = App.width/2-25;
-		int mys = App.height/2-25;
+	public float[] getCoord(float locx, float locy, float locz, int decalx, int decaly) {
+		int mxs = App.width/2-decalx;
+		int mys = App.height/2-decaly;
 		float lx = locx-getCamera().getX();
 		float ly = locy-getCamera().getY();
 		float lz = locz-getCamera().getZ();

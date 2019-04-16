@@ -29,7 +29,7 @@ public interface EtatBlock {
 			if (block.getMaterial().equals(Material.air)) {
 				block.setRender(false);
 			} else {
-				float[] coord = block.getWorld().getCoord(block.getLocation());
+				float[] coord = block.getWorld().getCoord(block.getLocation(), 25, 25);
 				block.setXaf(coord[0]);
 				block.setYaf(coord[1]);
 				block.setRender(inScreen(block));
@@ -49,7 +49,7 @@ public interface EtatBlock {
 		
 		@Override
 		public void update(GameContainer container, StateBasedGame game, int delta, Block block) {
-			float[] coord = block.getWorld().getCoord(block.getLocation());
+			float[] coord = block.getWorld().getCoord(block.getLocation(), 25, 25);
 			block.setXaf(coord[0]);
 			block.setYaf(coord[1]);
 			block.setRender(inScreen(block));

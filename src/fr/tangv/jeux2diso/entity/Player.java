@@ -36,7 +36,7 @@ public class Player extends Entity {
 	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) {
-		setCoordAf(getWorld().getCoord(getLocation()));
+		setCoordAf(getWorld().getCoord(getLocation(), width/2, height/2));
 	}
 
 	@Override
