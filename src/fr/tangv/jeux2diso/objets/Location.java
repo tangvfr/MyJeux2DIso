@@ -1,5 +1,7 @@
 package fr.tangv.jeux2diso.objets;
 
+import fr.tangv.jeux2diso.entity.EntityLocation;
+
 public class Location {
 
 	protected int x;
@@ -7,7 +9,11 @@ public class Location {
 	protected int z;
 	protected World world;
 	
-	public Location toEntityLocation() {
+	public EntityLocation toEntityLocation() {
+		return new EntityLocation(x, y, z, world);
+	}
+	
+	public Location copy() {
 		return new Location(x, y, z, world);
 	}
 	

@@ -14,6 +14,10 @@ public class EntityLocation {
 		return new Location(Math.round(x), Math.round(y), Math.round(z), world);
 	}
 	
+	public EntityLocation copy() {
+		return new EntityLocation(x, y, z, world);
+	}
+	
 	public EntityLocation(float x, float y, float z, World world) {
 		this.x = x;
 		this.y = y;
@@ -25,8 +29,9 @@ public class EntityLocation {
 		return world;
 	}
 	
-	public void setWorld(World world) {
+	public EntityLocation setWorld(World world) {
 		this.world = world;
+		return this;
 	}
 	
 	public float getX() {
@@ -41,40 +46,48 @@ public class EntityLocation {
 		return z;
 	}
 	
-	public void setX(float x) {
+	public EntityLocation setX(float x) {
 		this.x = x;
+		return this;
 	}
 	
-	public void setY(float y) {
+	public EntityLocation setY(float y) {
 		this.y = y;
+		return this;
 	}
 	
-	public void setZ(float z) {
+	public EntityLocation setZ(float z) {
 		this.z = z;
+		return this;
 	}
 	
-	public void addX(float x) {
+	public EntityLocation addX(float x) {
 		this.x += x;
+		return this;
 	}
 	
-	public void addY(float y) {
+	public EntityLocation addY(float y) {
 		this.y += y;
+		return this;
 	}
 	
-	public void addZ(float z) {
+	public EntityLocation addZ(float z) {
 		this.z += z;
+		return this;
 	}
 	
-	public void setCoord(float x, float y, float z) {
+	public EntityLocation setCoord(float x, float y, float z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		return this;
 	}
 	
-	public void addCoord(float x, float y, float z) {
+	public EntityLocation addCoord(float x, float y, float z) {
 		this.x += x;
 		this.y += y;
 		this.z += z;
+		return this;
 	}
 	
 }

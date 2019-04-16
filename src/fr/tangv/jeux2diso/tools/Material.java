@@ -2,10 +2,10 @@ package fr.tangv.jeux2diso.tools;
 
 public enum Material implements Loading{
 	
-	air(0, (byte)0, ResourceImage.air, "air"),
-	feriume_green(1, (byte)0, ResourceImage.feriumegreen, "feriume_green"),
-	feriume_orange(1, (byte)1, ResourceImage.feriumeorange, "feriume_orange"),
-	feriume_blue(1, (byte)2, ResourceImage.feriumeblue, "feriume_blue");
+	air(0, (byte)0, ResourceImage.air, "air", false),
+	feriume_green(1, (byte)0, ResourceImage.feriumegreen, "feriume_green", true),
+	feriume_orange(1, (byte)1, ResourceImage.feriumeorange, "feriume_orange", true),
+	feriume_blue(1, (byte)2, ResourceImage.feriumeblue, "feriume_blue", true);
 	
 	public static Material getMaterial(int id, int data) {
 		for (Material material : Material.values()) {
@@ -29,16 +29,22 @@ public enum Material implements Loading{
 	private byte data;
 	private ResourceImage img;
 	private String name;
+	private boolean solid;
 	
-	private Material(int id, byte data, ResourceImage img, String name) {
+	private Material(int id, byte data, ResourceImage img, String name, boolean solid) {
 		this.img = img;
 		this.id = id;
 		this.data = data;
 		this.name = name;
+		this.solid = solid;
 	}
 	
 	@Override
 	public void ini() {}
+	
+	public boolean isSolid() {
+		return solid;
+	}
 	
 	public ResourceImage getResourceImage() {
 		return img;

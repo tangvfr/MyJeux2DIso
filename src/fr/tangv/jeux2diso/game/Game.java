@@ -1,6 +1,5 @@
 package fr.tangv.jeux2diso.game;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -8,11 +7,9 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import fr.tangv.jeux2diso.entity.EntityLocation;
 import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Block;
-import fr.tangv.jeux2diso.objets.Colide;
 import fr.tangv.jeux2diso.objets.Direction;
 import fr.tangv.jeux2diso.objets.EtatBlock;
 import fr.tangv.jeux2diso.objets.Location;
@@ -36,30 +33,15 @@ public class Game extends BasicGameState {
 		FormBlockWorld.setCube(block1, new Location(8, 1, 1, worldtest), new Location(7, 2, 2, worldtest));
 		FormBlockWorld.setCubeArret(block2,  new Location(0, 1, 9, worldtest),  new Location(4, 1, 5, worldtest));
 		FormBlockWorld.setCube(block3, new Location(19, 0, 0, worldtest), new Location(0, 0, 19, worldtest));
+		
+		worldtest.getMainPlayer().getLocation().setY(1f);
 	}
-	
-	private Block blockselect;
-	private EtatBlock acetat;
 	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		Input input = container.getInput();
 		if (input.isKeyPressed(Input.KEY_ESCAPE)) {
 			((App)game).changeState(StateId.menumain);
-		}
-		if (input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			Colide mouse = new Colide(input.getMouseX(), input.getMouseY());
-			Block block = worldtest.getBlock(mouse);
-			if (block != null) {
-				if (blockselect != null) blockselect.setEtatBlock(acetat);
-				acetat = block.getEtat();
-				block.setEtatBlock(EtatBlock.selectblock);
-				blockselect = block;
-			} else {
-				if (blockselect != null) blockselect.setEtatBlock(acetat);
-				blockselect = null;
-			}
-			
 		}
 		
 		worldtest.update(container, game, delta);
@@ -68,14 +50,6 @@ public class Game extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		worldtest.render(container, game, g);
-		g.fillRect(container.getWidth()/2-1, container.getHeight()/2-1, 2, 2);
-		
-		if(container.isShowingFPS() && ((App)game).devmode) {
-			g.resetFont();
-			g.setColor(Color.white);
-			EntityLocation cam = worldtest.getCamera();
-			g.drawString("Cam_w: "+cam.getWorld().getName()+"\nCam_x: "+cam.getX()+"\nCam_y: "+cam.getY()+"\nCam_z: "+cam.getZ(), 10, 30);
-		}
 	}
 
 	@Override
