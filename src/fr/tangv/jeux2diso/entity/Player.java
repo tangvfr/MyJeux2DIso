@@ -15,6 +15,9 @@ public class Player extends Entity {
 	protected SpriteSheet spsh;
 	protected int width = 50;
 	protected int height = 50;
+	protected float sizex = 1;
+	protected float sizey = 1;
+	protected float sizez = 1;
 	protected String name;
 	
 	public Colide getColide() {

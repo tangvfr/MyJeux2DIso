@@ -23,11 +23,11 @@ public class GamemodeCreator implements Gamemode {
 		float cof = 0.5f;
 		if (input.isKeyPressed(Parametre.parametre.getKeyForWard())) {
 			mainplayer.getLocation().addZ(-cof);
-			mainplayer.setDirection(Direction.east);
+			mainplayer.setDirection(Direction.west);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyBack())) {
 			mainplayer.getLocation().addZ(cof);
-			mainplayer.setDirection(Direction.west);
+			mainplayer.setDirection(Direction.east);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyLeft())) {
 			mainplayer.getLocation().addX(cof);

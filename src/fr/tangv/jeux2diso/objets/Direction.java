@@ -6,8 +6,8 @@ public enum Direction {
 	down("down", 4),
 	north("north", 0),
 	south("south", 2),
-	east("east", 1),
-	west("west", 3);
+	east("east", 3),
+	west("west", 1);
 	
 	private String direction;
 	private int i;

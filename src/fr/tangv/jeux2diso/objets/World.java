@@ -87,6 +87,18 @@ public class World {
 		return null;
 	}
 	
+	public boolean colide(EntityLocation location, float sx, float sy, float sz) {
+		
+		
+		return false;
+	}
+	
+	public Entity colideEntity(EntityLocation location, float sx, float sy, float sz) {
+		
+		
+		return null;
+	}
+	
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		//main player
 		mainplayer.update(container, game, delta);
