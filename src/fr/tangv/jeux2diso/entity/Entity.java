@@ -15,6 +15,16 @@ public abstract class Entity {
 	protected float xaf;
 	protected float yaf;
 	
+	public void setCoordAf(float xaf, float yaf) {
+		setXaf(xaf);
+		setYaf(yaf);
+	}
+	
+	public void setCoordAf(float[] af) {
+		setXaf(af[0]);
+		setYaf(af[1]);
+	}
+	
 	public void setXaf(float xaf) {
 		this.xaf= xaf;
 	}

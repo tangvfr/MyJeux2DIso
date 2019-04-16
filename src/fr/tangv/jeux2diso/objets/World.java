@@ -53,11 +53,19 @@ public class World {
 	}
 	
 	public float[] getCoord(Location location) {
+		return getCoord(location.getX(), location.getY(), location.getZ());
+	}
+	
+	public float[] getCoord(EntityLocation location) {
+		return getCoord(location.getX(), location.getY(), location.getZ());
+	}
+	
+	public float[] getCoord(float locx, float locy, float locz) {
 		int mxs = App.width/2-25;
 		int mys = App.height/2-25;
-		float lx = location.getX()+getCamera().getX();
-		float ly = location.getY()+getCamera().getY();
-		float lz = location.getZ()+getCamera().getZ();
+		float lx = locx+getCamera().getX();
+		float ly = locy+getCamera().getY();
+		float lz = locz+getCamera().getZ();
 		float x = mxs-(21*lx)+(21*lz);
 		float y = mys-(24*ly)+(12*lx)+(12*lz);
 		return new float[]{x, y};

@@ -43,7 +43,13 @@ public class App extends StateBasedGame {
 	@Override
 	public void keyPressed(int key, char c) {
 		super.keyPressed(key, c);
-		if (load) {
+		if (key == Input.KEY_F11) {
+			try {
+				agc.setFullscreen(!agc.isFullscreen());
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		}else if (load) {
 			if (key == Input.KEY_F3) {
 				if (this.agc.getInput().isKeyDown(Input.KEY_LCONTROL)) {
 					devmode = !devmode;

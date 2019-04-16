@@ -10,7 +10,7 @@ public class EntityLocation {
 	private float z;
 	private World world;
 	
-	public Location convertLocation() {
+	public Location toLocation() {
 		return new Location(Math.round(x), Math.round(y), Math.round(z), world);
 	}
 	

@@ -26,15 +26,10 @@ public class MainPlayer extends Player {
 	}
 	
 	@Override
-	public void setCoord() {
-		xaf = App.width/2-25;
-		yaf = App.height/2-25;
-	}
-	
-	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		if (gamemode.update(container, game, delta, this))
 			super.update(container, game, delta);
+		setCoordAf(App.width/2-25, App.height/2-49);
 	}
 	
 	@Override

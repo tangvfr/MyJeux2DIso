@@ -7,7 +7,7 @@ public class Location {
 	protected int z;
 	protected World world;
 	
-	public Location convertEntityLocation() {
+	public Location toEntityLocation() {
 		return new Location(x, y, z, world);
 	}
 	
