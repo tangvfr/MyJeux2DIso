@@ -33,6 +33,7 @@ public class Player extends Entity implements ConfigurationSerializable {
 	
 	public Player(EntityLocation location, Direction direction,String name, ResourceImage resimg) {
 		super(location, direction);
+		this.resimg = resimg;
 		this.spsh = new SpriteSheet(resimg.getImage(), width, height);
 		this.name = name;
 	}

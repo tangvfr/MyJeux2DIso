@@ -1,11 +1,16 @@
 package fr.tangv.jeux2diso.game;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.simpleyaml.configuration.file.FileConfiguration;
+import org.simpleyaml.configuration.file.YamlConfiguration;
 
 import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.main.App;
@@ -35,6 +40,20 @@ public class Game extends BasicGameState {
 		FormBlockWorld.setCube(block3, new Location(19, 0, 0, worldtest), new Location(0, 0, 19, worldtest));
 		
 		worldtest.getMainPlayer().getLocation().setY(1f);
+		File file = new File(System.getenv("APPDATA")+"/testage.yml");
+		if (!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		FileConfiguration conf = YamlConfiguration.loadConfiguration(file);
+		conf.set("maptestsave", worldtest);
+		try {
+			conf.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
