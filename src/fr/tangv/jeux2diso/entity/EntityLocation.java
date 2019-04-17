@@ -1,9 +1,14 @@
 package fr.tangv.jeux2diso.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
+
 import fr.tangv.jeux2diso.objets.Location;
 import fr.tangv.jeux2diso.objets.World;
 
-public class EntityLocation {
+public class EntityLocation implements ConfigurationSerializable {
 
 	private float x;
 	private float y;
@@ -88,6 +93,22 @@ public class EntityLocation {
 		this.y += y;
 		this.z += z;
 		return this;
+	}
+
+	@Override
+	public Map<String, Object> serialize() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("x", x);
+		map.put("y", y);
+		map.put("z", z);
+		return map;
+	}
+	
+	public EntityLocation(Map<String, Object> map) {
+		x = (float) map.get("x");
+		y = (float) map.get("y");
+		z = (float) map.get("z");
+		world = World.worldimport;
 	}
 	
 }

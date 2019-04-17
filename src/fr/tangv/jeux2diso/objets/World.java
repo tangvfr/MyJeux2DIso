@@ -1,17 +1,22 @@
 package fr.tangv.jeux2diso.objets;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
+import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 
 import fr.tangv.jeux2diso.entity.Entity;
 import fr.tangv.jeux2diso.entity.EntityLocation;
 import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.main.App;
 
-public class World {
+public class World implements ConfigurationSerializable{
+	
+	public static World worldimport;
 	
 	private Block[][][] world;
 	private int maxx;
@@ -145,6 +150,30 @@ public class World {
 	
 	public int getMaxZ() {
 		return maxz;
+	}
+	
+	@Override
+	public Map<String, Object> serialize() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("maxx", maxx);
+		map.put("maxy", maxy);
+		map.put("maxz", maxz);
+		map.put("name", name);
+		map.put("entitymap", entitymap);
+		map.put("mainplayer", mainplayer);
+		map.put("world", world);
+		return map;
+	}
+	
+	public World(Map<String, Object> map) {
+		World.worldimport = this;
+		maxx = (int) map.get("maxx");
+		maxy = (int) map.get("maxy");
+		maxz = (int) map.get("maxz");
+		name = (String) map.get("name");
+		entitymap = (ArrayList<Entity>) map.get("entitymap");
+		mainplayer = (MainPlayer) map.get("mainplayer");
+		world = (Block[][][]) map.get("world");
 	}
 	
 }

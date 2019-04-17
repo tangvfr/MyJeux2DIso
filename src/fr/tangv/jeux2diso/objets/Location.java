@@ -1,8 +1,13 @@
 package fr.tangv.jeux2diso.objets;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
+
 import fr.tangv.jeux2diso.entity.EntityLocation;
 
-public class Location {
+public class Location implements ConfigurationSerializable {
 
 	protected int x;
 	protected int y;
@@ -38,6 +43,22 @@ public class Location {
 	
 	public int getZ() {
 		return z;
+	}
+	
+	@Override
+	public Map<String, Object> serialize() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("x", x);
+		map.put("y", y);
+		map.put("z", z);
+		return map;
+	}
+	
+	public Location(Map<String, Object> map) {
+		x = (int) map.get("x");
+		y = (int) map.get("y");
+		z = (int) map.get("z");
+		world = World.worldimport;
 	}
 	
 }

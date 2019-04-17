@@ -16,9 +16,14 @@ import org.newdawn.slick.util.ResourceLoader;
 import org.simpleyaml.configuration.serialization.ConfigurationSerialization;
 
 import fr.tangv.jeux2diso.entity.Entity;
+import fr.tangv.jeux2diso.entity.EntityLocation;
+import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.entity.Player;
 import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.main.Main;
+import fr.tangv.jeux2diso.objets.Block;
+import fr.tangv.jeux2diso.objets.Location;
+import fr.tangv.jeux2diso.objets.World;
 import fr.tangv.jeux2diso.tools.Loader;
 import fr.tangv.jeux2diso.tools.Loading;
 import fr.tangv.jeux2diso.tools.Mask;
