@@ -94,19 +94,25 @@ public class World implements ConfigurationSerializable{
 		return null;
 	}
 	
-	public boolean colide(EntityLocation location, float sx, float sy, float sz) {
-		
-		
-		return false;
-	}
-	
-	public Entity colideEntity(EntityLocation location, float sx, float sy, float sz) {
+	public Block[] colideBlock(Entity entity) {
 		
 		
 		return null;
 	}
 	
-	public boolean colideEntity(EntityLocation location, float sx, float sy, float sz, EntityLocation slocation, float ssx, float ssy, float ssz) {
+	public boolean colideBlock(Entity entity, Block block) {
+		
+	
+		return false;
+	}
+	
+	public Entity[] colideEntity(Entity entity) {
+		
+		
+		return null;
+	}
+	
+	public boolean colideEntity(Entity entity, Entity sentity) {
 		
 		
 		return false;

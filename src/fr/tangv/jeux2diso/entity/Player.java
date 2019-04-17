@@ -18,11 +18,13 @@ public class Player extends Entity implements ConfigurationSerializable {
 	protected SpriteSheet spsh;
 	protected static final int width = 50;
 	protected static final int height = 50;
-	protected static final float sizex = 1;
-	protected static final float sizey = 1;
-	protected static final float sizez = 1;
+	protected static final float[] size = new float[] {1, 1, 1};
 	protected String name;
 	protected ResourceImage resimg;
+	
+	public float[] getSize() {
+		return size;
+	}
 	
 	public Colide getColide() {
 		if (getRender())
