@@ -3,6 +3,7 @@ package fr.tangv.jeux2diso.objets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -23,12 +24,13 @@ public class World implements ConfigurationSerializable{
 	private String name;
 	public ArrayList<Entity> entitymap = new ArrayList<Entity>();
 	private MainPlayer mainplayer;
+	private UUID uniqueid;
 	
 	public MainPlayer getMainPlayer() {
 		return mainplayer;
 	}
 	
-	public World(int maxx, int maxy, int maxz, String name, MainPlayer mainplayer) {
+	public World(int maxx, int maxy, int maxz, String name, MainPlayer mainplayer, UUID uniqueid) {
 		world = new Block[maxx][maxy][maxz];
 		this.maxx = maxx;
 		this.maxy = maxy;
@@ -39,6 +41,11 @@ public class World implements ConfigurationSerializable{
 		this.name = name;
 		mainplayer.setLocation(new EntityLocation(0.0f, 0.0f, 0.0f, this));
 		this.mainplayer = mainplayer;
+		this.uniqueid = uniqueid;
+		if (chargedworld.containsKey(uniqueid))
+			chargedworld.replace(uniqueid, this);
+		else
+			chargedworld.put(uniqueid, this);
 	}
 	
 	public void setBlock(Block bblock, Location location) {
@@ -150,9 +157,14 @@ public class World implements ConfigurationSerializable{
 		return maxz;
 	}
 	
+	public UUID getUniqueId() {
+		return uniqueid;
+	}
+	
 	@Override
 	public Map<String, Object> serialize() {
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uniqueid", uniqueid.toString());
 		map.put("maxx", maxx);
 		map.put("maxy", maxy);
 		map.put("maxz", maxz);
@@ -165,6 +177,7 @@ public class World implements ConfigurationSerializable{
 	
 	@SuppressWarnings("unchecked")
 	public World(Map<String, Object> map) {
+		this.uniqueid = UUID.fromString((String) map.get("uniqueid"));
 		this.maxx = (int) map.get("maxx");
 		this.maxy = (int) map.get("maxy");
 		this.maxz = (int) map.get("maxz");
@@ -176,7 +189,15 @@ public class World implements ConfigurationSerializable{
 		for (int x = 0; x < maxx; x++) for (int y = 0; y < maxy; y++) for (int z = 0; z < maxz; z++){
 			this.world[x][y][z] = world.get(x).get(y).get(z);
 		}
-		System.out.println(this.toString());
+	}
+	
+	private static Map<UUID ,World> chargedworld = new HashMap<UUID ,World>();
+	
+	public static World getWorld(UUID uniqueid) {
+		if (chargedworld.containsKey(uniqueid))
+			return chargedworld.get(uniqueid);
+		else
+			return null;
 	}
 	
 }

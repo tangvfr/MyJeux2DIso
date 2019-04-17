@@ -2,6 +2,7 @@ package fr.tangv.jeux2diso.objets;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 
@@ -12,25 +13,25 @@ public class Location implements ConfigurationSerializable {
 	protected int x;
 	protected int y;
 	protected int z;
-	protected World world;
+	protected UUID worldid;
 	
 	public EntityLocation toEntityLocation() {
-		return new EntityLocation(x, y, z, world);
+		return new EntityLocation(x, y, z, World.getWorld(worldid));
 	}
 	
 	public Location copy() {
-		return new Location(x, y, z, world);
+		return new Location(x, y, z, World.getWorld(worldid));
 	}
 	
 	public Location(int x, int y, int z, World world) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.world = world;
+		this.worldid = world.getUniqueId();
 	}
 	
 	public World getWorld() {
-		return world;
+		return World.getWorld(worldid);
 	}
 	
 	public int getX() {
@@ -51,7 +52,7 @@ public class Location implements ConfigurationSerializable {
 		map.put("x", x);
 		map.put("y", y);
 		map.put("z", z);
-		map.put("world", world);
+		map.put("worldid", worldid.toString());
 		return map;
 	}
 	
@@ -59,7 +60,7 @@ public class Location implements ConfigurationSerializable {
 		x = (int) map.get("x");
 		y = (int) map.get("y");
 		z = (int) map.get("z");
-		world = (World) map.get("world");
+		this.worldid = UUID.fromString((String) map.get("worldid"));
 	}
 	
 }

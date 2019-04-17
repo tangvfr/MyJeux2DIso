@@ -1,8 +1,6 @@
 package fr.tangv.jeux2diso.game;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,12 +8,9 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.simpleyaml.configuration.file.FileConfiguration;
-import org.simpleyaml.configuration.file.YamlConfiguration;
 import org.simpleyaml.configuration.file.YamlFile;
 import org.simpleyaml.exceptions.InvalidConfigurationException;
 
-import fr.tangv.jeux2diso.entity.EntityLocation;
 import fr.tangv.jeux2diso.entity.MainPlayer;
 import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Block;

@@ -2,6 +2,7 @@ package fr.tangv.jeux2diso.entity;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 
@@ -13,29 +14,29 @@ public class EntityLocation implements ConfigurationSerializable {
 	private float x;
 	private float y;
 	private float z;
-	private World world;
+	private UUID worldid;
 	
 	public Location toLocation() {
-		return new Location(Math.round(x), Math.round(y), Math.round(z), world);
+		return new Location(Math.round(x), Math.round(y), Math.round(z), World.getWorld(worldid));
 	}
 	
 	public EntityLocation copy() {
-		return new EntityLocation(x, y, z, world);
+		return new EntityLocation(x, y, z, World.getWorld(worldid));
 	}
 	
 	public EntityLocation(float x, float y, float z, World world) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.world = world;
+		this.worldid = world.getUniqueId();
 	}
 	
 	public World getWorld() {
-		return world;
+		return World.getWorld(worldid);
 	}
 	
 	public EntityLocation setWorld(World world) {
-		this.world = world;
+		this.worldid = world.getUniqueId();
 		return this;
 	}
 	
@@ -101,7 +102,7 @@ public class EntityLocation implements ConfigurationSerializable {
 		map.put("x", x);
 		map.put("y", y);
 		map.put("z", z);
-		map.put("world", world);
+		map.put("worldid", worldid.toString());
 		return map;
 	}
 	
@@ -109,7 +110,7 @@ public class EntityLocation implements ConfigurationSerializable {
 		x = ((Double) map.get("x")).floatValue();
 		y = ((Double) map.get("y")).floatValue();
 		z = ((Double) map.get("z")).floatValue();
-		world = (World) map.get("world");
+		this.worldid = UUID.fromString((String) map.get("worldid"));
 	}
 	
 }
