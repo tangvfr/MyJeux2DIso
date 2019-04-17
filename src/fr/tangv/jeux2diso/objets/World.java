@@ -99,6 +99,12 @@ public class World {
 		return null;
 	}
 	
+	public boolean colideEntity(EntityLocation location, float sx, float sy, float sz, EntityLocation slocation, float ssx, float ssy, float ssz) {
+		
+		
+		return false;
+	}
+	
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		//main player
 		mainplayer.update(container, game, delta);

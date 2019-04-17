@@ -1,13 +1,17 @@
 package fr.tangv.jeux2diso.entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
+import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 
 import fr.tangv.jeux2diso.objets.Direction;
 import fr.tangv.jeux2diso.objets.World;
 
-public abstract class Entity {
+public abstract class Entity implements ConfigurationSerializable {
 		
 	protected EntityLocation location;
 	protected Direction direction;
@@ -87,4 +91,23 @@ public abstract class Entity {
 		this.render = render;
 	}
 		
+	@Override
+	public Map<String, Object> serialize() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("location", location);
+		map.put("direction", direction.toString());
+		map.put("render", render);
+		map.put("xaf", xaf);
+		map.put("yaf", yaf);
+		return map;
+	}
+	
+	public Entity(Map<String, Object> map) {
+		location = (EntityLocation) map.get("location");
+		Direction.valueOf((String) map.get("direction"));
+		render = (boolean) map.get("render");
+		xaf = (float) map.get("xaf");
+		yaf = (float) map.get("yaf");
+	}
+	
 }

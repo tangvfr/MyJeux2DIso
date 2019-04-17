@@ -66,4 +66,9 @@ public class GamemodeCreator implements Gamemode {
 		return true;
 	}
 
+	@Override
+	public int getId() {
+		return GamemodeId.creator.getId();
+	}
+
 }

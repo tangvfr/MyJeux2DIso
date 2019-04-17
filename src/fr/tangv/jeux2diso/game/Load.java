@@ -13,7 +13,10 @@ import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.ResourceLoader;
+import org.simpleyaml.configuration.serialization.ConfigurationSerialization;
 
+import fr.tangv.jeux2diso.entity.Entity;
+import fr.tangv.jeux2diso.entity.Player;
 import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.main.Main;
 import fr.tangv.jeux2diso.tools.Loader;
@@ -43,6 +46,18 @@ public class Load extends BasicGameState{
 			((App)game).setCursor(imageloadcursor, 0, 0);
 			
 			loader = new Loader();
+			loader.addLoading(new Loading() {
+				@Override
+				public void ini() {
+					ConfigurationSerialization.registerClass(Entity.class);
+					ConfigurationSerialization.registerClass(Player.class);
+					ConfigurationSerialization.registerClass(MainPlayer.class);
+					ConfigurationSerialization.registerClass(EntityLocation.class);
+					ConfigurationSerialization.registerClass(Location.class);
+					ConfigurationSerialization.registerClass(Block.class);
+					ConfigurationSerialization.registerClass(World.class);
+				}
+			});
 			loader.addLoading(ResourceImage.values());
 			loader.addLoading(ResourceFont.values());
 			loader.addLoading(Material.values());

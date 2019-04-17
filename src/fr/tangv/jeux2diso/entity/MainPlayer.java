@@ -1,9 +1,12 @@
 package fr.tangv.jeux2diso.entity;
 
+import java.util.Map;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.state.StateBasedGame;
+import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 
 import fr.tangv.jeux2diso.gamemode.Gamemode;
 import fr.tangv.jeux2diso.gamemode.GamemodeNormal;
@@ -11,7 +14,7 @@ import fr.tangv.jeux2diso.main.App;
 import fr.tangv.jeux2diso.objets.Direction;
 import fr.tangv.jeux2diso.tools.ResourceImage;
 
-public class MainPlayer extends Player {
+public class MainPlayer extends Player implements ConfigurationSerializable {
 
 	public Gamemode gamemode;
 	
@@ -41,6 +44,18 @@ public class MainPlayer extends Player {
 			g.setColor(Color.white);
 			g.drawString("world: "+getWorld().getName()+"\nx: "+getX()+"\ny: "+getY()+"\nz: "+getZ(), 10, 30);
 		}
+	}
+	
+	@Override
+	public Map<String, Object> serialize() {
+		Map<String, Object> map = super.serialize();
+		map.put("gamemode", gamemode.getId());
+		return null;
+	}
+	
+	public MainPlayer(Map<String, Object> map) {
+		super(map);
+		gamemode = Gamemode.createGamemode((int) map.get("gamemode"));
 	}
 	
 }

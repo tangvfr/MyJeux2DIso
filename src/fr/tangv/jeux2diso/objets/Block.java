@@ -8,7 +8,7 @@ import fr.tangv.jeux2diso.tools.Material;
 
 public class Block {
 	
-	public static Block nullblock = new Block(null, Material.air, EtatBlock.nulletat);
+	public static final Block nullblock = new Block(null, Material.air, EtatBlock.nulletat);
 	
 	private Material material;
 	private EtatBlock etat;

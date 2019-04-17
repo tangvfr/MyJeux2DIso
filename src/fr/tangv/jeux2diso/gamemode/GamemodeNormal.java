@@ -56,4 +56,9 @@ public class GamemodeNormal implements Gamemode {
 		return true;
 	}
 
+	@Override
+	public int getId() {
+		return GamemodeId.normal.getId();
+	}
+
 }
