@@ -101,9 +101,9 @@ public abstract class Entity implements ConfigurationSerializable {
 	}
 	
 	public Entity(Map<String, Object> map) {
-		location = (EntityLocation) map.get("location");
-		Direction.valueOf((String) map.get("direction"));
-		render = (boolean) map.get("render");
+		this.location = (EntityLocation) map.get("location");
+		this.direction = Direction.valueOf((String) map.get("direction"));
+		this.render = (boolean) map.get("render");
 	}
 	
 }

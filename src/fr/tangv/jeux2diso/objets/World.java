@@ -31,6 +31,8 @@ public class World implements ConfigurationSerializable{
 	}
 	
 	public World(int maxx, int maxy, int maxz, String name, MainPlayer mainplayer, UUID uniqueid) {
+		this.uniqueid = uniqueid;
+		addWorld(this);
 		world = new Block[maxx][maxy][maxz];
 		this.maxx = maxx;
 		this.maxy = maxy;
@@ -41,11 +43,6 @@ public class World implements ConfigurationSerializable{
 		this.name = name;
 		mainplayer.setLocation(new EntityLocation(0.0f, 0.0f, 0.0f, this));
 		this.mainplayer = mainplayer;
-		this.uniqueid = uniqueid;
-		if (chargedworld.containsKey(uniqueid))
-			chargedworld.replace(uniqueid, this);
-		else
-			chargedworld.put(uniqueid, this);
 	}
 	
 	public void setBlock(Block bblock, Location location) {
@@ -178,6 +175,7 @@ public class World implements ConfigurationSerializable{
 	@SuppressWarnings("unchecked")
 	public World(Map<String, Object> map) {
 		this.uniqueid = UUID.fromString((String) map.get("uniqueid"));
+		addWorld(this);
 		this.maxx = (int) map.get("maxx");
 		this.maxy = (int) map.get("maxy");
 		this.maxz = (int) map.get("maxz");
@@ -192,6 +190,18 @@ public class World implements ConfigurationSerializable{
 	}
 	
 	private static Map<UUID ,World> chargedworld = new HashMap<UUID ,World>();
+	
+	private static void addWorld(World world) {
+		UUID uniqueid = world.getUniqueId();
+		if (chargedworld.containsKey(uniqueid))
+			chargedworld.replace(uniqueid, world);
+		else
+			chargedworld.put(uniqueid, world);
+	}
+	
+	public static void resetChargedWorld() {
+		chargedworld.clear();
+	}
 	
 	public static World getWorld(UUID uniqueid) {
 		if (chargedworld.containsKey(uniqueid))
