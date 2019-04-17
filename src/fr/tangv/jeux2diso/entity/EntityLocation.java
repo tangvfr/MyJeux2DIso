@@ -105,9 +105,9 @@ public class EntityLocation implements ConfigurationSerializable {
 	}
 	
 	public EntityLocation(Map<String, Object> map) {
-		x = (float) map.get("x");
-		y = (float) map.get("y");
-		z = (float) map.get("z");
+		x = ((Double) map.get("x")).floatValue();
+		y = ((Double) map.get("y")).floatValue();
+		z = ((Double) map.get("z")).floatValue();
 		world = World.worldimport;
 	}
 	

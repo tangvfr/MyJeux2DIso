@@ -167,14 +167,19 @@ public class World implements ConfigurationSerializable{
 	
 	@SuppressWarnings("unchecked")
 	public World(Map<String, Object> map) {
-		World.worldimport = this;
-		maxx = (int) map.get("maxx");
-		maxy = (int) map.get("maxy");
-		maxz = (int) map.get("maxz");
-		name = (String) map.get("name");
-		entitymap = (ArrayList<Entity>) map.get("entitymap");
-		mainplayer = (MainPlayer) map.get("mainplayer");
-		world = (Block[][][]) map.get("world");
+		worldimport = this;
+		this.maxx = (int) map.get("maxx");
+		this.maxy = (int) map.get("maxy");
+		this.maxz = (int) map.get("maxz");
+		this.name = (String) map.get("name");
+		this.entitymap = (ArrayList<Entity>) map.get("entitymap");
+		this.mainplayer = (MainPlayer) map.get("mainplayer");
+		ArrayList<ArrayList<ArrayList<Block>>> world = (ArrayList<ArrayList<ArrayList<Block>>>) map.get("world");
+		this.world = new Block[maxx][maxy][maxz];
+		for (int x = 0; x < maxx; x++) for (int y = 0; y < maxy; y++) for (int z = 0; z < maxz; z++){
+			this.world[x][y][z] = world.get(x).get(y).get(z);
+		}
+		System.out.println(worldimport != null);
 	}
 	
 }

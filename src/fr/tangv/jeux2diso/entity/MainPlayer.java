@@ -50,7 +50,7 @@ public class MainPlayer extends Player implements ConfigurationSerializable {
 	public Map<String, Object> serialize() {
 		Map<String, Object> map = super.serialize();
 		map.put("gamemode", gamemode.getId());
-		return null;
+		return map;
 	}
 	
 	public MainPlayer(Map<String, Object> map) {

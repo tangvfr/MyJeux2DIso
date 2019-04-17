@@ -116,8 +116,6 @@ public class Block implements ConfigurationSerializable {
 		map.put("etat", etat.toString());
 		map.put("location", location);
 		map.put("render", render);
-		map.put("xaf", xaf);
-		map.put("yaf", yaf);
 		return map;
 	}
 	
@@ -126,8 +124,6 @@ public class Block implements ConfigurationSerializable {
 		etat = EtatBlock.valueOf((String) map.get("etat"));
 		location = (Location) map.get("location");
 		render = (boolean) map.get("render");
-		xaf = (float) map.get("xaf");
-		yaf = (float) map.get("yaf");
 	}
 	
 }

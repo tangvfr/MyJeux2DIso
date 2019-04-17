@@ -97,8 +97,6 @@ public abstract class Entity implements ConfigurationSerializable {
 		map.put("location", location);
 		map.put("direction", direction.toString());
 		map.put("render", render);
-		map.put("xaf", xaf);
-		map.put("yaf", yaf);
 		return map;
 	}
 	
@@ -106,8 +104,6 @@ public abstract class Entity implements ConfigurationSerializable {
 		location = (EntityLocation) map.get("location");
 		Direction.valueOf((String) map.get("direction"));
 		render = (boolean) map.get("render");
-		xaf = (float) map.get("xaf");
-		yaf = (float) map.get("yaf");
 	}
 	
 }
