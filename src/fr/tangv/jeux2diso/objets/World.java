@@ -16,8 +16,6 @@ import fr.tangv.jeux2diso.main.App;
 
 public class World implements ConfigurationSerializable{
 	
-	public static World worldimport;
-	
 	private Block[][][] world;
 	private int maxx;
 	private int maxy;
@@ -178,7 +176,7 @@ public class World implements ConfigurationSerializable{
 		for (int x = 0; x < maxx; x++) for (int y = 0; y < maxy; y++) for (int z = 0; z < maxz; z++){
 			this.world[x][y][z] = world.get(x).get(y).get(z);
 		}
-		System.out.println(worldimport != null);
+		System.out.println(this.toString());
 	}
 	
 }

@@ -33,7 +33,7 @@ public class Game extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
-		worldtest = new World(20, 3, 20, "World_Test", new MainPlayer(null, Direction.south, "", ResourceImage.playermainsheet));
+		World worldtest = new World(20, 3, 20, "World_Test", new MainPlayer(null, Direction.south, "", ResourceImage.playermainsheet));
 		
 		Block block1 = new Block(null, Material.feriume_green, EtatBlock.normalblock);
 		Block block2 = new Block(null, Material.feriume_orange, EtatBlock.normalblock);
@@ -44,25 +44,26 @@ public class Game extends BasicGameState {
 		FormBlockWorld.setCube(block3, new Location(19, 0, 0, worldtest), new Location(0, 0, 19, worldtest));
 		
 		worldtest.getMainPlayer().getLocation().setY(1f);
-		YamlFile file = new YamlFile(System.getenv("APPDATA")+"/testage.yml");
-		file.set("maptestsave", worldtest);
-		try {
-			file.save();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		/*if (!file.exists())
+		YamlFile files = new YamlFile(System.getenv("APPDATA")+"/testage.yml");
+		if (!files.exists())
 			try {
-				file.createNewFile(true);
+				files.createNewFile(true);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		files.set("maptestsave", worldtest);
 		try {
-			file.load();
+			files.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		YamlFile filei = new YamlFile(System.getenv("APPDATA")+"/testage.yml");
+		try {
+			filei.load();
 		} catch (InvalidConfigurationException | IOException e) {
 			e.printStackTrace();
 		}
-		worldtest = (World) file.get("maptestsave");*/
+		this.worldtest = (World) filei.get("maptestsave");
 	}
 	
 	@Override
