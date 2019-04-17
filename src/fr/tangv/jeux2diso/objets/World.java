@@ -167,7 +167,6 @@ public class World implements ConfigurationSerializable{
 	
 	@SuppressWarnings("unchecked")
 	public World(Map<String, Object> map) {
-		worldimport = this;
 		this.maxx = (int) map.get("maxx");
 		this.maxy = (int) map.get("maxy");
 		this.maxz = (int) map.get("maxz");

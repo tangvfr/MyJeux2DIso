@@ -101,6 +101,7 @@ public class EntityLocation implements ConfigurationSerializable {
 		map.put("x", x);
 		map.put("y", y);
 		map.put("z", z);
+		map.put("world", world);
 		return map;
 	}
 	
@@ -108,7 +109,7 @@ public class EntityLocation implements ConfigurationSerializable {
 		x = ((Double) map.get("x")).floatValue();
 		y = ((Double) map.get("y")).floatValue();
 		z = ((Double) map.get("z")).floatValue();
-		world = World.worldimport;
+		world = (World) map.get("world");
 	}
 	
 }

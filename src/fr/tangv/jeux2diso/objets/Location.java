@@ -51,6 +51,7 @@ public class Location implements ConfigurationSerializable {
 		map.put("x", x);
 		map.put("y", y);
 		map.put("z", z);
+		map.put("world", world);
 		return map;
 	}
 	
@@ -58,7 +59,7 @@ public class Location implements ConfigurationSerializable {
 		x = (int) map.get("x");
 		y = (int) map.get("y");
 		z = (int) map.get("z");
-		world = World.worldimport;
+		world = (World) map.get("world");
 	}
 	
 }
