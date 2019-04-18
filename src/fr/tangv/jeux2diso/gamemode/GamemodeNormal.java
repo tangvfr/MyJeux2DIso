@@ -15,7 +15,7 @@ public class GamemodeNormal implements Gamemode {
 	@Override
 	public boolean update(GameContainer container, StateBasedGame game, int delta, MainPlayer mainplayer) {
 		Input input = container.getInput();
-		float cof = 1f;
+		float cof = 0.5f;
 		EntityLocation location = mainplayer.getLocation();
 		if (input.isKeyPressed(Parametre.parametre.getKeyForWard())) {
 			mainplayer.setDirection(Direction.west);

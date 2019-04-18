@@ -96,23 +96,64 @@ public class World implements ConfigurationSerializable{
 	
 	public ArrayList<Block> colideBlocks(Entity entity) {
 		ArrayList<Block> list = new ArrayList<Block>();
-		for (int x = Math.round(entity.getX())-1; x <= Math.round(entity.getX()+entity.getSizeX()); x++) 
-			for (int z = Math.round(entity.getZ())-1; z <= Math.round(entity.getZ()+entity.getSizeZ()); z++) 
-				for (int y = Math.round(entity.getY())-1; y <= Math.round(entity.getY()+entity.getSizeY()); y++) {
+		int minx = -1+((int) entity.getX());
+		int miny = -1+((int) entity.getY());
+		int minz = -1+((int) entity.getZ());
+		int maxx = ((int) entity.getSizeX())+((int) entity.getX());
+		int maxy = ((int) entity.getSizeY())+((int) entity.getY());
+		int maxz = ((int) entity.getSizeZ())+((int) entity.getZ());
+		
+		System.out.println("-------------");
+		System.out.println(minx);
+		System.out.println(miny);
+		System.out.println(minz);
+		System.out.println(maxx);
+		System.out.println(maxy);
+		System.out.println(maxz);
+		
+		for (int x = minx; x <= maxx; x++) 
+			for (int z = minz; z <= maxz; z++) 
+				for (int y = miny; y <= maxy; y++) {
 					Block block = getBlock(x, y, z);
-					if (colideBlock(entity, block))
+					if (block == null || colideBlock(entity, block)) {
 						list.add(block);
+						System.out.println("x:"+x+" y:"+y+" z:"+" null:"+block==null);
+					}
 				}
 		
 		return list;
 	}
 	
 	public boolean colideBlock(Entity entity, Block block) {
-		if (block == null)
-			return true;
-		if (!block.getMaterial().isSolid())
+		if (block == null || !block.getMaterial().isSolid())
 			return false;
 		
+		float eminx = entity.getX();
+		float eminy = entity.getY();
+		float eminz	= entity.getZ();
+		float emaxx	= eminx+entity.getSizeX();
+		float emaxy = eminy+entity.getSizeY();
+		float emaxz = eminz+entity.getSizeZ();
+		
+		float sminx = block.getX();
+		float sminy = block.getY();
+		float sminz	= block.getZ();
+		float smaxx	= sminx+1;
+		float smaxy = sminy+1;
+		float smaxz = sminz+1;
+		
+		if (sminx >= emaxx) return false;
+		if (sminy >= emaxy) return false;
+		if (sminz >= emaxz) return false;
+		
+		if (eminx >= smaxx) return false;
+		if (eminy >= smaxy) return false;
+		if (eminz >= smaxz) return false;
+		
+		return true;
+	}
+	
+	public boolean colideBlockIgoreSolide(Entity entity, Block block) {
 		float eminx = entity.getX();
 		float eminy = entity.getY();
 		float eminz	= entity.getZ();
@@ -186,13 +227,27 @@ public class World implements ConfigurationSerializable{
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 		//block go render
-		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++)
-			getBlock(x, y ,z).render(container, game, g);
-		//all entity
-		for (Entity entity : entitymap)
-			entity.render(container, game, g);
-		//main player
-		mainplayer.render(container, game, g);
+		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++) {
+			Block block = getBlock(x, y ,z);
+			block.render(container, game, g);
+			if (!mainplayer.getGlowEntity()) {
+				//all entity
+				for (Entity entity : entitymap)
+					if (colideBlockIgoreSolide(entity, block))
+						entity.render(container, game, g);
+				//main player
+				if (colideBlockIgoreSolide(mainplayer, block))
+					mainplayer.render(container, game, g);
+			}
+		}
+		
+		if (mainplayer.getGlowEntity()) {
+			//all entity
+			for (Entity entity : entitymap)
+				entity.render(container, game, g);
+			//main player
+			mainplayer.render(container, game, g);
+		}
 	}
 	
 	public EntityLocation getCamera() {

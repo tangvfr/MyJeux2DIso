@@ -17,6 +17,15 @@ import fr.tangv.jeux2diso.tools.ResourceImage;
 public class MainPlayer extends Player implements ConfigurationSerializable {
 
 	public Gamemode gamemode;
+	private boolean glowentity = false;
+	
+	public void setGlowEntity(boolean glowentity) {
+		this.glowentity = glowentity;
+	}
+	
+	public boolean getGlowEntity() {
+		return glowentity;
+	}
 	
 	public MainPlayer(EntityLocation location, Direction direction, String name, ResourceImage resimg) {
 		super(location, direction, name, resimg);
