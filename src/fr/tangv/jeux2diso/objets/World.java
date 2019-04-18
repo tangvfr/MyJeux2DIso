@@ -103,14 +103,6 @@ public class World implements ConfigurationSerializable{
 		int maxy = ((int) entity.getSizeY())+((int) entity.getY());
 		int maxz = ((int) entity.getSizeZ())+((int) entity.getZ());
 		
-		System.out.println("-------------");
-		System.out.println(minx);
-		System.out.println(miny);
-		System.out.println(minz);
-		System.out.println(maxx);
-		System.out.println(maxy);
-		System.out.println(maxz);
-		
 		for (int x = minx; x <= maxx; x++) 
 			for (int z = minz; z <= maxz; z++) 
 				for (int y = miny; y <= maxy; y++) {
@@ -120,11 +112,9 @@ public class World implements ConfigurationSerializable{
 						blockn.setLocation(new Location(x, y, z, this));
 						if (colideBlockIgoreSolide(entity, blockn)) {
 							list.add(blockn);
-							System.out.println("x:"+x+" y:"+y+" z:"+" null:"+(block==null));
 						}
 					} else if (colideBlock(entity, block)) {
 						list.add(block);
-						System.out.println("x:"+x+" y:"+y+" z:"+" null:"+(block==null));
 					}
 				}
 		
@@ -233,21 +223,30 @@ public class World implements ConfigurationSerializable{
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
+		//reset
+		for (Entity entity : entitymap)
+			entity.isrender = false;
+		mainplayer.isrender = false;
 		//block go render
-		for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) for (int y = 0; y < maxy; y++) {
+		for (int y = 0; y < maxy; y++) for (int x = 0; x < maxx; x++) for (int z = 0; z < maxz; z++) {
 			Block block = getBlock(x, y ,z);
 			block.render(container, game, g);
+			//glow desactivate
 			if (!mainplayer.getGlowEntity()) {
 				//all entity
 				for (Entity entity : entitymap)
-					if (colideBlockIgoreSolide(entity, block))
+					if (!entity.isrender && colideBlockIgoreSolide(entity, block)) {
 						entity.render(container, game, g);
+						entity.isrender = true;
+					}
 				//main player
-				if (colideBlockIgoreSolide(mainplayer, block))
+				if (!mainplayer.isrender && colideBlockIgoreSolide(mainplayer, block)) {
 					mainplayer.render(container, game, g);
+					mainplayer.isrender = true;
+				}
 			}
 		}
-		
+		//glow activate
 		if (mainplayer.getGlowEntity()) {
 			//all entity
 			for (Entity entity : entitymap)

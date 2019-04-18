@@ -12,7 +12,8 @@ import fr.tangv.jeux2diso.objets.Direction;
 import fr.tangv.jeux2diso.objets.World;
 
 public abstract class Entity implements ConfigurationSerializable {
-		
+	
+	public boolean isrender = false;
 	protected EntityLocation location;
 	protected Direction direction;
 	protected boolean render;

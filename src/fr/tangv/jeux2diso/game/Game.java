@@ -29,11 +29,15 @@ public class Game extends BasicGameState {
 	
 	worldtest.getMainPlayer().getLocation().setY(1f);*/
 	
-	@Override
-	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+	public void reset() {
 		@SuppressWarnings("deprecation")
 		YamlConfiguration filei = YamlConfiguration.loadConfiguration(ResourceLoader.getResourceAsStream("res/testage.yml"));
 		this.worldtest = (World) filei.get("world");
+	}
+	
+	@Override
+	public void init(GameContainer container, StateBasedGame game) throws SlickException {
+		
 	}
 	
 	@Override

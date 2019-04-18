@@ -5,6 +5,7 @@ import java.util.Map;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.state.StateBasedGame;
 import org.simpleyaml.configuration.serialization.ConfigurationSerializable;
 
@@ -18,10 +19,6 @@ public class MainPlayer extends Player implements ConfigurationSerializable {
 
 	public Gamemode gamemode;
 	private boolean glowentity = false;
-	
-	public void setGlowEntity(boolean glowentity) {
-		this.glowentity = glowentity;
-	}
 	
 	public boolean getGlowEntity() {
 		return glowentity;
@@ -38,6 +35,10 @@ public class MainPlayer extends Player implements ConfigurationSerializable {
 	
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) {
+		Input input = container.getInput();
+		if (input.isKeyPressed(Input.KEY_F10)) {
+			glowentity = !glowentity;
+		}
 		if (gamemode.update(container, game, delta, this)) {
 			super.update(container, game, delta);
 			setCoordAf(App.width/2-25, App.height/2-25);

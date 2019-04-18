@@ -25,6 +25,7 @@ public class MenuMain extends BasicGameState {
 			@Override public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {}
 			@Override public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
 				container.sleep(150);
+				((Game)game.getState(StateId.game.getId())).reset();
 				((App)game).changeState(StateId.game);
 			}
 		}); 
