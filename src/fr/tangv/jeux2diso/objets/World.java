@@ -115,9 +115,16 @@ public class World implements ConfigurationSerializable{
 			for (int z = minz; z <= maxz; z++) 
 				for (int y = miny; y <= maxy; y++) {
 					Block block = getBlock(x, y, z);
-					if (block == null || colideBlock(entity, block)) {
+					if (block == null) {
+						Block blockn = Block.nullblock.copy();
+						blockn.setLocation(new Location(x, y, z, this));
+						if (colideBlockIgoreSolide(entity, blockn)) {
+							list.add(blockn);
+							System.out.println("x:"+x+" y:"+y+" z:"+" null:"+(block==null));
+						}
+					} else if (colideBlock(entity, block)) {
 						list.add(block);
-						System.out.println("x:"+x+" y:"+y+" z:"+" null:"+block==null);
+						System.out.println("x:"+x+" y:"+y+" z:"+" null:"+(block==null));
 					}
 				}
 		
