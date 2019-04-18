@@ -26,6 +26,18 @@ public class Player extends Entity implements ConfigurationSerializable {
 		return size;
 	}
 	
+	public float getSizeX() {
+		return size[0];
+	}
+	
+	public float getSizeY() {
+		return size[1];
+	}
+	
+	public float getSizeZ() {
+		return size[2];
+	}
+	
 	public Colide getColide() {
 		if (getRender())
 			return new Colide(xaf, yaf, width, height, ColideMask.player);

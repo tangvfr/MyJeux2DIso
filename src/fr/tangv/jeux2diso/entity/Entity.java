@@ -20,6 +20,9 @@ public abstract class Entity implements ConfigurationSerializable {
 	protected float yaf;
 	
 	public abstract float[] getSize();
+	public abstract float getSizeX();
+	public abstract float getSizeY();
+	public abstract float getSizeZ();
 	
 	public void setCoordAf(float xaf, float yaf) {
 		setXaf(xaf);

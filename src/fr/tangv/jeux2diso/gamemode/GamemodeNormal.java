@@ -19,23 +19,27 @@ public class GamemodeNormal implements Gamemode {
 		EntityLocation location = mainplayer.getLocation();
 		if (input.isKeyPressed(Parametre.parametre.getKeyForWard())) {
 			mainplayer.setDirection(Direction.west);
-			
 			location.addZ(-cof);
+			if(mainplayer.getWorld().colideBlocks(mainplayer).size() != 0)
+				location.addZ(cof);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyBack())) {
 			mainplayer.setDirection(Direction.east);
-			
 			location.addZ(cof);
+			if(mainplayer.getWorld().colideBlocks(mainplayer).size() != 0)
+				location.addZ(-cof);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyLeft())) {
 			mainplayer.setDirection(Direction.south);
-			
 			location.addX(cof);
+			if(mainplayer.getWorld().colideBlocks(mainplayer).size() != 0)
+				location.addX(-cof);
 		}
 		if (input.isKeyPressed(Parametre.parametre.getKeyRight())) {
 			mainplayer.setDirection(Direction.north);
-			
 			location.addX(-cof);
+			if(mainplayer.getWorld().colideBlocks(mainplayer).size() != 0)
+				location.addX(cof);
 		}
 		
 		if (input.isKeyPressed(Parametre.parametre.getKeyDown())) {

@@ -94,28 +94,83 @@ public class World implements ConfigurationSerializable{
 		return null;
 	}
 	
-	public Block[] colideBlock(Entity entity) {
+	public ArrayList<Block> colideBlocks(Entity entity) {
+		ArrayList<Block> list = new ArrayList<Block>();
+		for (int x = Math.round(entity.getX())-1; x <= Math.round(entity.getX()+entity.getSizeX()); x++) 
+			for (int z = Math.round(entity.getZ())-1; z <= Math.round(entity.getZ()+entity.getSizeZ()); z++) 
+				for (int y = Math.round(entity.getY())-1; y <= Math.round(entity.getY()+entity.getSizeY()); y++) {
+					Block block = getBlock(x, y, z);
+					if (colideBlock(entity, block))
+						list.add(block);
+				}
 		
-		
-		return null;
+		return list;
 	}
 	
 	public boolean colideBlock(Entity entity, Block block) {
+		if (block == null)
+			return true;
+		if (!block.getMaterial().isSolid())
+			return false;
 		
-	
-		return false;
+		float eminx = entity.getX();
+		float eminy = entity.getY();
+		float eminz	= entity.getZ();
+		float emaxx	= eminx+entity.getSizeX();
+		float emaxy = eminy+entity.getSizeY();
+		float emaxz = eminz+entity.getSizeZ();
+		
+		float sminx = block.getX();
+		float sminy = block.getY();
+		float sminz	= block.getZ();
+		float smaxx	= sminx+1;
+		float smaxy = sminy+1;
+		float smaxz = sminz+1;
+		
+		if (sminx >= emaxx) return false;
+		if (sminy >= emaxy) return false;
+		if (sminz >= emaxz) return false;
+		
+		if (eminx >= smaxx) return false;
+		if (eminy >= smaxy) return false;
+		if (eminz >= smaxz) return false;
+		
+		return true;
 	}
 	
-	public Entity[] colideEntity(Entity entity) {
-		
-		
-		return null;
+	public ArrayList<Entity> colideEntitys(Entity entity) {
+		ArrayList<Entity> list = new ArrayList<Entity>();
+		for (Entity sentity : entitymap) {
+			if (entity != sentity && colideEntity(entity, sentity))
+				list.add(sentity);
+		}
+		return list;
 	}
 	
 	public boolean colideEntity(Entity entity, Entity sentity) {
+		float eminx = entity.getX();
+		float eminy = entity.getY();
+		float eminz	= entity.getZ();
+		float emaxx	= eminx+entity.getSizeX();
+		float emaxy = eminy+entity.getSizeY();
+		float emaxz = eminz+entity.getSizeZ();
 		
+		float sminx = sentity.getX();
+		float sminy = sentity.getY();
+		float sminz	= sentity.getZ();
+		float smaxx	= sminx+sentity.getSizeX();;
+		float smaxy = sminy+sentity.getSizeY();;
+		float smaxz = sminz+sentity.getSizeZ();;
 		
-		return false;
+		if (sminx >= emaxx) return false;
+		if (sminy >= emaxy) return false;
+		if (sminz >= emaxz) return false;
+		
+		if (eminx >= smaxx) return false;
+		if (eminy >= smaxy) return false;
+		if (eminz >= smaxz) return false;
+		
+		return true;
 	}
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {
