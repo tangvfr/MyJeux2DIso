@@ -99,6 +99,14 @@ public class Button {
 		action.render(container, game, g, this);
 	}
 	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	public byte getEtat() {
 		return etat;
 	}

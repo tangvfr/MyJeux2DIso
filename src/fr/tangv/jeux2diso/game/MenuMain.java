@@ -22,7 +22,6 @@ public class MenuMain extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		buttonstartgame = new Button(50, 250, ResourceImage.menubutton, Color.white, ResourceLangue.buttonmenustartgame.getString(), ResourceFont.techfont20, new ButtonAction() {
-			@Override public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {}
 			@Override public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
 				container.sleep(150);
 				((Game)game.getState(StateId.game.getId())).reset();
@@ -30,7 +29,6 @@ public class MenuMain extends BasicGameState {
 			}
 		}); 
 		buttonexit = new Button(50, 320, ResourceImage.menubutton, Color.white, ResourceLangue.buttonmenuquit.getString(), ResourceFont.techfont20, new ButtonAction() {
-			@Override public void render(GameContainer container, StateBasedGame game, Graphics g, Button button) {}
 			@Override public void action(GameContainer container, StateBasedGame game, int delta, Button button) {
 				container.sleep(150);
 				((App)game).exit();
